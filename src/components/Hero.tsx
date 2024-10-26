@@ -64,7 +64,7 @@ export default function Hero() {
                   zIndex: -1,
                   animation: "typing 5.5s steps(30, end), blink-caret 0.75s step-end infinite",
               }}>
-                Hi, I'm Ezekiel Mburu
+                Hi, <br/> I'm Ezekiel Mburu
               </Text>
               <br /><br />
               <Text fontSize={{ base: "md", md: "lg" }} color="gray.600">Innovate ● Inspire ● Create</Text>
