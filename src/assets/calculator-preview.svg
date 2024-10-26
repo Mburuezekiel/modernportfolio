@@ -1,0 +1,51 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8fafc"/>
+  
+  <!-- Calculator UI -->
+  <rect x="50" y="40" width="300" height="220" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="50" y="40" width="300" height="50" rx="8" fill="#3b82f6"/>
+  <text x="200" y="70" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Array Sum Calculator</text>
+  
+  <!-- Input Field -->
+  <rect x="70" y="110" width="260" height="35" rx="4" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="85" y="132" font-family="Arial" font-size="12" fill="#94a3b8">1, 2, 3, 4, 5</text>
+  
+  <!-- Buttons -->
+  <rect x="70" y="160" width="80" height="30" rx="4" fill="#3b82f6"/>
+  <text x="110" y="180" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Calculate</text>
+  
+  <rect x="160" y="160" width="80" height="30" rx="4" fill="#22c55e"/>
+  <text x="200" y="180" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Example</text>
+  
+  <rect x="250" y="160" width="80" height="30" rx="4" fill="#ef4444"/>
+  <text x="290" y="180" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Clear</text>
+  
+  <!-- Result -->
+  <rect x="70" y="205" width="260" height="35" rx="4" fill="#f1f5f9"/>
+  <text x="200" y="227" font-family="Arial" font-size="14" fill="#0f172a" text-anchor="middle">Sum: 15</text>
+
+  <!-- Decorative Elements -->
+  <!-- Numbers floating in background -->
+  <g fill="#e2e8f0" font-family="Arial" font-size="24">
+    <text x="20" y="50">1</text>
+    <text x="360" y="80">2</text>
+    <text x="30" y="150">3</text>
+    <text x="370" y="200">4</text>
+    <text x="40" y="250">5</text>
+  </g>
+
+  <!-- Plus symbols -->
+  <g fill="#e2e8f0" font-family="Arial" font-size="20">
+    <text x="40" y="100">+</text>
+    <text x="350" y="140">+</text>
+    <text x="45" y="200">+</text>
+    <text x="340" y="240">+</text>
+  </g>
+
+  <!-- Visual Flourishes -->
+  <circle cx="25" cy="25" r="15" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="375" cy="275" r="20" fill="#3b82f6" opacity="0.1"/>
+</svg>
