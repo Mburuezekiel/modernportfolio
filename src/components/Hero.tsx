@@ -87,6 +87,7 @@ export default function Hero() {
                   left: 0,
                   bg: "orange.300", // Using Chakra's built-in colors
                   zIndex: -1,
+                  animation: typing 5.5s steps(30, end), blink-caret 0.75s step-end infinite;
                 }}
               >
                 Ezekiel Mburu
