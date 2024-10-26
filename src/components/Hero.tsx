@@ -67,12 +67,14 @@ export default function Hero() {
                 Hi, <br/> I'm Ezekiel Mburu
               </Text>
               <br /><br />
-              <Text fontSize={{ base: "md", md: "lg" }} color="gray.600">Innovate ● Inspire ● Create</Text>
+              
               <Text as={"span"} color={"orange.500"} fontSize={{ base: "md", md: "lg" }}>Full Stack Developer</Text>
             </Heading>
             <Text color={"gray.500"} fontSize={"xl"}>
               Passionate about creating innovative web solutions and turning ideas into reality through clean, efficient code.
             </Text>
+            <br />
+            <Text fontSize={{ base: "md", md: "lg" }} color="gray.600">Innovate ● Inspire ● Create</Text>
           </MotionBox>
         </Stack>
 
