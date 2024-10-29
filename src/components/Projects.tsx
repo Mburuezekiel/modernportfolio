@@ -1,4 +1,5 @@
 import React from 'react';
+import CALC from '../assets/Calc.jpg';
 import {
   Box,
   Container,
@@ -42,14 +43,14 @@ const projects = [
   {
     title: 'Sum Array Calculator',
     description: 'A simple web application to calculate the sum of an array of numbers.',
-    image: 'https://files.oaiusercontent.com/file-V9aXmswrGcmJyBdiprR8mIcQ?se=2024-10-26T00%3A34%3A26Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dfeb72398-69c6-40e8-be1d-8fbccf3e5a16.webp&sig=950oFU%2By7uTMQFm77TSto57IumY2k49OzzoCPSrkkrM%3D',
-    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React'],
-    githubUrl: 'https://github.com/yourusername/project3',
-    liveUrl: '/src/projects/sumArrayCalculator.html', 
+    image: CALC,
+    technologies: ['React', 'Chakra UI', 'JavaScript'],
+    githubUrl: 'https://github.com/yourusername/project4',
+    liveUrl: '/src/projects/sumArrayCalculator.html',
   },
 ];
 
-const ProjectCard = ({ title, description, image, technologies, githubUrl, liveUrl }: ProjectProps) => {
+const ProjectCard = ({ title, description, image, technologies, githubUrl, liveUrl }) => {
   return (
     <Box
       maxW={'445px'}
@@ -60,22 +61,28 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
       p={6}
       overflow={'hidden'}
     >
-      <Box
-        h={'210px'}
-        bg={'gray.100'}
-        mt={-6}
-        mx={-6}
-        mb={6}
-        pos={'relative'}
-      >
-        <Image
-          src={image}
-          alt={title}
-          objectFit="cover"
-          w="full"
-          h="full"
-        />
-      </Box>
+      <Link href={liveUrl} isExternal>
+        <Box
+          h={'210px'}
+          bg={'gray.100'}
+          mt={-6}
+          mx={-6}
+          mb={6}
+          pos={'relative'}
+          _hover={{
+            transform: 'scale(1.05)',
+            transition: 'transform 0.3s ease-in-out',
+          }}
+        >
+          <Image
+            src={image}
+            alt={title}
+            objectFit="cover"
+            w="full"
+            h="full"
+          />
+        </Box>
+      </Link>
       <Stack>
         <Heading
           color={useColorModeValue('gray.700', 'white')}
@@ -107,7 +114,7 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
         <Button
           flex={1}
           fontSize={'sm'}
-          bg={"gray.700"}
+          bg={'gray.700'}
           rounded={'full'}
           leftIcon={<Github size={20} />}
           onClick={() => window.open(githubUrl, '_blank')}
