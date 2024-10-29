@@ -11,8 +11,7 @@ import {
   Icon,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Code, Coffee, Globe } from 'lucide-react';
-import { Mail, Github } from 'lucide-react'; // Make sure to import the Mail and Github icons
+import { Code, Coffee, Globe, Mail, Github, Linkedin } from 'lucide-react'; // Import Linkedin
 
 interface FeatureProps {
   title: string;
@@ -83,12 +82,10 @@ export default function About() {
               colorScheme={"brand"}
               bg={"skyblue"}
               _hover={{ bg: "brand.600" }}
-              leftIcon={<linked In size={20} />}
-              onClick={() =>
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-              }
+              leftIcon={<Icon as={Linkedin} />}
+              onClick={() => window.open("https://www.linkedin.com/in/ezekiel-mburu-5aaa00262", "_blank")}
             >
-              linked In
+              LinkedIn
             </Button>
             <br/>
             <Button
@@ -97,11 +94,11 @@ export default function About() {
               bg={"gray.700"}
               fontWeight={"normal"}
               px={6}
-              leftIcon={<Github size={20} />}
+              leftIcon={<Icon as={Github} />}
               onClick={() => window.open("https://github.com/Mburuezekiel", "_blank")}
             >
-              View Github
-              </Button>
+              View GitHub
+            </Button>
           </Flex>
           <Stack
             direction={{ base: 'column', md: 'row' }}
