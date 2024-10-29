@@ -46,7 +46,7 @@ const projects = [
     image: CALC,
     technologies: ['React', 'Chakra UI', 'JavaScript'],
     githubUrl: 'https://github.com/yourusername/project4',
-    liveUrl: '/src/projects/sumArrayCalculator.html',
+    liveUrl: 'https://array-sum-calculator.vercel.app/',
   },
 ];
 
