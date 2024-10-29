@@ -14,12 +14,12 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
       _hover={{ transform: 'translateY(-20px)', boxShadow: '0 5px 10px orange' }}
       textAlign="center"
     >
-      <Icon as={icon} fontSize="40px" color="#ffd700" mb="20px" />
+      <Icon as={icon} fontSize="40px" color="black" mb="20px" />
       <Heading fontSize="xl" color="#ffd700" mb="2">
         {title}
       </Heading>
       <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
-      <Text color="white" fontSize="16px">
+      <Text color="blue" fontSize="16px">
         {description}
       </Text>
     </Box>
