@@ -28,7 +28,6 @@ const images = [
   brand,
   back,
   code,
-  code off,
   // External images omitted for brevity
 ];
 
