@@ -81,14 +81,14 @@ export default function About() {
               fontWeight={"normal"}
               px={6}
               colorScheme={"brand"}
-              bg={"orange"}
+              bg={"skyblue"}
               _hover={{ bg: "brand.600" }}
-              leftIcon={<Mail size={20} />}
+              leftIcon={<linked In size={20} />}
               onClick={() =>
                 document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Contact Me
+              linked In
             </Button>
             <br/>
             <Button
