@@ -80,7 +80,7 @@ export default function About() {
               fontWeight={"normal"}
               px={6}
               colorScheme={"brand"}
-              bg={"skyblue"}
+              bg={"brand.500"}
               _hover={{ bg: "brand.600" }}
               leftIcon={<Icon as={Linkedin} />}
               onClick={() => window.open("https://www.linkedin.com/in/ezekiel-mburu-5aaa00262", "_blank")}
