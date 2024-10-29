@@ -4,6 +4,8 @@ import dev from "../assets/webdev.jpeg";
 import brand from "../assets/branding.jpeg";
 import log from "../assets/logo2.jpeg";
 import back from "../assets/background.webp";
+import code from "../assets/code.avif"
+import code off  from "../assets/code off.avif"
 import {
   Container,
   Stack,
@@ -25,6 +27,8 @@ const images = [
   dev,
   brand,
   back,
+  code,
+  code off,
   // External images omitted for brevity
 ];
 
