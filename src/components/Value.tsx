@@ -14,7 +14,7 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
       _hover={{ transform: 'translateY(-20px)', boxShadow: '0 5px 10px orange' }}
       textAlign="center"
     >
-      <Icon as={icon} fontSize="40px" color="black" mb="20px" />
+      <Icon as={icon} fontSize="40px" color="white" mb="20px" />
       <Heading fontSize="xl" color="#ffd700" mb="2">
         {title}
       </Heading>
