@@ -32,7 +32,11 @@ export default function Values() {
       <Container maxW="7xl">
         <Heading color="#ffd700" mb="40px">
           My Professional Values
+          <Text as={'span'} color={'brand.500'}>
+                Values
+              </Text>
         </Heading>
+        
         <Stack
           direction={{ base: 'column', md: 'row' }}
           spacing={{ base: 6, md: 4 }}
