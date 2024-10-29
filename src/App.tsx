@@ -8,7 +8,7 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
+import Value from './components/Value';
 function App() {
   return (
     <ChakraProvider theme={theme}>
@@ -18,6 +18,7 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <Value />
         <Contact />
         <Footer />
       </Box>
