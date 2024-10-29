@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // Import useRef
 import logo from '../assets/favicon.ico';
 import {
   Box,
@@ -23,6 +23,7 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [showTooltip, setShowTooltip] = useState(false);
   const bg = useColorModeValue('white', 'gray.800');
+  const menuRef = useRef(null); // Create a ref for the Menu component
 
   const handleThemeToggle = () => {
     toggleColorMode();
@@ -32,7 +33,7 @@ const Navbar = () => {
     }, 3000);
   };
 
-  const NavLink = ({ children, icon }) => (
+  const NavLink = ({ children, icon, onClick }) => (
     <Button
       px={4}
       py={1}
@@ -45,20 +46,30 @@ const Navbar = () => {
         textDecoration: 'none',
         bg: useColorModeValue('gray.200', 'gray.700'),
       }}
-      onClick={() => {
-        const targetId = children.toString().toLowerCase();
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          console.warn(`Element with ID "${targetId}" not found.`);
-        }
-      }}
+      onClick={onClick}
     >
       <i className={`bi ${icon}`} style={{ marginRight: '8px' }}></i>
       {children}
     </Button>
   );
+
+  // Effect to handle clicks outside of the menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        // Close the menu if the click is outside
+        onToggle();
+      }
+    };
+
+    // Attach the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    // Cleanup the event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onToggle]);
 
   return (
     <>
@@ -83,30 +94,30 @@ const Navbar = () => {
             </Tooltip>
             <HStack spacing={6} alignItems={'center'}>
               <HStack as={'nav'} spacing={6} display={{ base: 'none', md: 'flex' }}>
-                <NavLink icon="bi-house">Home</NavLink>
-                <NavLink icon="bi-info-circle">About</NavLink>
-                <NavLink icon="bi-tools">Skills</NavLink>
-                <NavLink icon="bi-briefcase">Projects</NavLink>
-                <NavLink icon="bi-envelope">Contact</NavLink>
+                <NavLink icon="bi-house" onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>Home</NavLink>
+                <NavLink icon="bi-info-circle" onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>About</NavLink>
+                <NavLink icon="bi-tools" onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>Skills</NavLink>
+                <NavLink icon="bi-briefcase" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>Projects</NavLink>
+                <NavLink icon="bi-envelope" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Contact</NavLink>
               </HStack>
             </HStack>
-            <Box display={{ base: 'block', md: 'none' }}>
+            <Box display={{ base: 'block', md: 'none' }} ref={menuRef}>
               <Menu isOpen={isOpen}>
                 <MenuButton as={IconButton} aria-label="Options" icon={<MenuIcon />} variant="ghost" onClick={onToggle} />
                 <MenuList>
-                  <MenuItem onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => { document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }); onToggle(); }}>
                     <i className="bi bi-house" style={{ marginRight: '8px' }}></i> Home
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => { document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); onToggle(); }}>
                     <i className="bi bi-info-circle" style={{ marginRight: '8px' }}></i> About
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => { document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }); onToggle(); }}>
                     <i className="bi bi-tools" style={{ marginRight: '8px' }}></i> Skills
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => { document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); onToggle(); }}>
                     <i className="bi bi-briefcase" style={{ marginRight: '8px' }}></i> Projects
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); onToggle(); }}>
                     <i className="bi bi-envelope" style={{ marginRight: '8px' }}></i> Contact
                   </MenuItem>
                 </MenuList>
