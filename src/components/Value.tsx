@@ -28,8 +28,8 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
 
 export default function Values() {
   // Define the title and description for the Values section
-  const title = "My Professional Values"; // Add a title for the Values section
-  const description = "Core principles that guide my work and commitments."; // Optional description
+  const title = "My Professional "; // Add a title for the Values section
+  const description = "Values"; // Optional description
 
   return (
     <Box color="white" py="50px" textAlign="center" borderTop="2px solid #ff9900">
@@ -38,7 +38,7 @@ export default function Values() {
           {title}
         </Heading>
         <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
-        <Text color="white" fontSize="16px" mb="40px"> {/* Added margin bottom for spacing */}
+        <Text color="blue" fontSize="xl" mb="40px"> {/* Added margin bottom for spacing */}
           {description}
         </Text>
         
