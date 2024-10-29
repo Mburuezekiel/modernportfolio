@@ -28,14 +28,15 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
 
 export default function Values() {
   return (
-    <Box color="white" py="50px" textAlign="center" borderTop="5px solid #ff9900">
+    <Box color="white" py="50px" textAlign="center" borderTop="2px solid #ff9900">
       <Container maxW="7xl">
-        <Heading color="black" mb="40px">
-          My Professional
-          <Text as={'span'} color={'brand.500'}>
-                  Values
-              </Text>
-        </Heading>
+        <Heading fontSize="xl" color="#ffd700" mb="2">
+        {title}
+      </Heading>
+      <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
+      <Text color="white" fontSize="16px">
+        {description}
+      </Text>
         
         <Stack
           direction={{ base: 'column', md: 'row' }}
