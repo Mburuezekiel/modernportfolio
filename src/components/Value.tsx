@@ -30,8 +30,8 @@ export default function Values() {
   return (
     <Box bg="#1b3b5f" color="white" py="50px" textAlign="center" borderTop="5px solid #ff9900">
       <Container maxW="7xl">
-        <Heading color="#ffd700" mb="40px">
-          My Professional Values
+        <Heading color="black" mb="40px">
+          My Professional
           <Text as={'span'} color={'brand.500'}>
                 Values
               </Text>
