@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Import useState
+import React, { useState } from 'react';
 import logo from '../assets/favicon.ico';
 import {
   Box,
@@ -21,20 +21,18 @@ import { Menu as MenuIcon, Sun, Moon } from 'lucide-react';
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  const [showTooltip, setShowTooltip] = useState(false); // State to manage tooltip visibility
+  const [showTooltip, setShowTooltip] = useState(false);
   const bg = useColorModeValue('white', 'gray.800');
 
   const handleThemeToggle = () => {
-    toggleColorMode(); // Toggle the theme
-    setShowTooltip(true); // Show the tooltip
-
-    // Set a timeout to hide the tooltip after 3 seconds
+    toggleColorMode();
+    setShowTooltip(true);
     setTimeout(() => {
-      setShowTooltip(false); // Hide the tooltip
+      setShowTooltip(false);
     }, 3000);
   };
 
-  const NavLink = ({ children, icon }: { children: React.ReactNode; icon: string }) => (
+  const NavLink = ({ children, icon }) => (
     <Button
       px={4}
       py={1}
@@ -63,31 +61,22 @@ const Navbar = () => {
   );
 
   return (
-    <Box>
-      <Box
-        bg={bg}
-        px={4}
-        position="fixed"
-        w="100%"
-        top={0}
-        zIndex={1000}
-        boxShadow="sm"
-      >
+    <>
+      <Box bg={bg} px={4} position="fixed" w="100%" top={0} zIndex={1000} boxShadow="sm">
         <Container maxW="container.xl">
           <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
             <Button variant="ghost" fontSize="xl" fontWeight="bold" display="flex" alignItems="center" gap={1}>
               <img src={logo} alt="Ezekiel Njuguna" className="logo-image" />
               E.M
             </Button>
-            {/* Theme Switcher Button */}
             <Tooltip 
               label={colorMode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} 
               aria-label="A tooltip"
-              isOpen={showTooltip} // Control visibility with state
+              isOpen={showTooltip}
             >
               <IconButton
                 icon={colorMode === 'light' ? <Moon /> : <Sun />}
-                onClick={handleThemeToggle} // Call the handler
+                onClick={handleThemeToggle}
                 variant="ghost"
                 aria-label="Toggle theme"
               />
@@ -101,20 +90,10 @@ const Navbar = () => {
                 <NavLink icon="bi-envelope">Contact</NavLink>
               </HStack>
             </HStack>
-
             <Box display={{ base: 'block', md: 'none' }}>
-              <Menu isOpen={isOpen} onClose={onToggle}>
+              <Menu isOpen={isOpen}>
                 <MenuButton as={IconButton} aria-label="Options" icon={<MenuIcon />} variant="ghost" onClick={onToggle} />
-                <MenuList 
-                  position="absolute"
-                  left={0}
-                  top={0}
-                  zIndex={1000}
-                  backgroundColor="white"
-                  boxShadow="md"
-                  opacity={isOpen ? 1 : 0} // Control opacity of the menu
-                  transition="opacity 0.3s ease"
-                >
+                <MenuList>
                   <MenuItem onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
                     <i className="bi bi-house" style={{ marginRight: '8px' }}></i> Home
                   </MenuItem>
@@ -136,8 +115,8 @@ const Navbar = () => {
           </Flex>
         </Container>
       </Box>
-      
-      {/* Opacity Overlay */}
+
+      {/* Main Content Overlay */}
       {isOpen && (
         <Box
           position="fixed"
@@ -145,11 +124,11 @@ const Navbar = () => {
           left={0}
           right={0}
           bottom={0}
-          bg="rgba(0, 0, 0, 0.5)" // Adjust the opacity value as needed
-          zIndex={900} // Ensure this overlay is behind the navbar
+          bg="rgba(0, 0, 0, 0.1)" // Adjust the opacity here
+          zIndex={900} // Ensure it is below the Navbar
         />
       )}
-    </Box>
+    </>
   );
 };
 
