@@ -63,13 +63,22 @@ const Navbar = () => {
   );
 
   return (
-    <Box bg={bg} px={4} position="fixed" w="100%" top={0} zIndex={1000} boxShadow="sm">
-      <Container maxW="container.xl">
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Button variant="ghost" fontSize="xl" fontWeight="bold" display="flex" alignItems="center" gap={1}>
-            <img src={logo} alt="Ezekiel Njuguna" className="logo-image" />
-            E.M
-          </Button>
+    <Box>
+      <Box
+        bg={bg}
+        px={4}
+        position="fixed"
+        w="100%"
+        top={0}
+        zIndex={1000}
+        boxShadow="sm"
+      >
+        <Container maxW="container.xl">
+          <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+            <Button variant="ghost" fontSize="xl" fontWeight="bold" display="flex" alignItems="center" gap={1}>
+              <img src={logo} alt="Ezekiel Njuguna" className="logo-image" />
+              E.M
+            </Button>
             {/* Theme Switcher Button */}
             <Tooltip 
               label={colorMode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} 
@@ -83,42 +92,63 @@ const Navbar = () => {
                 aria-label="Toggle theme"
               />
             </Tooltip>
-          <HStack spacing={6} alignItems={'center'}>
-            <HStack as={'nav'} spacing={6} display={{ base: 'none', md: 'flex' }}>
-              <NavLink icon="bi-house">Home</NavLink>
-              <NavLink icon="bi-info-circle">About</NavLink>
-              <NavLink icon="bi-tools">Skills</NavLink>
-              <NavLink icon="bi-briefcase">Projects</NavLink>
-              <NavLink icon="bi-envelope">Contact</NavLink>
+            <HStack spacing={6} alignItems={'center'}>
+              <HStack as={'nav'} spacing={6} display={{ base: 'none', md: 'flex' }}>
+                <NavLink icon="bi-house">Home</NavLink>
+                <NavLink icon="bi-info-circle">About</NavLink>
+                <NavLink icon="bi-tools">Skills</NavLink>
+                <NavLink icon="bi-briefcase">Projects</NavLink>
+                <NavLink icon="bi-envelope">Contact</NavLink>
+              </HStack>
             </HStack>
 
-            
-          </HStack>
-
-          <Box display={{ base: 'block', md: 'none' }}>
-            <Menu>
-              <MenuButton as={IconButton} aria-label="Options" icon={<MenuIcon />} variant="ghost" />
-              <MenuList>
-                <MenuItem onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <i className="bi bi-house" style={{ marginRight: '8px' }}></i> Home
-                </MenuItem>
-                <MenuItem onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <i className="bi bi-info-circle" style={{ marginRight: '8px' }}></i> About
-                </MenuItem>
-                <MenuItem onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <i className="bi bi-tools" style={{ marginRight: '8px' }}></i> Skills
-                </MenuItem>
-                <MenuItem onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <i className="bi bi-briefcase" style={{ marginRight: '8px' }}></i> Projects
-                </MenuItem>
-                <MenuItem onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <i className="bi bi-envelope" style={{ marginRight: '8px' }}></i> Contact
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          </Box>
-        </Flex>
-      </Container>
+            <Box display={{ base: 'block', md: 'none' }}>
+              <Menu isOpen={isOpen} onClose={onToggle}>
+                <MenuButton as={IconButton} aria-label="Options" icon={<MenuIcon />} variant="ghost" onClick={onToggle} />
+                <MenuList 
+                  position="absolute"
+                  left={0}
+                  top={0}
+                  zIndex={1000}
+                  backgroundColor="white"
+                  boxShadow="md"
+                  opacity={isOpen ? 1 : 0} // Control opacity of the menu
+                  transition="opacity 0.3s ease"
+                >
+                  <MenuItem onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <i className="bi bi-house" style={{ marginRight: '8px' }}></i> Home
+                  </MenuItem>
+                  <MenuItem onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <i className="bi bi-info-circle" style={{ marginRight: '8px' }}></i> About
+                  </MenuItem>
+                  <MenuItem onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <i className="bi bi-tools" style={{ marginRight: '8px' }}></i> Skills
+                  </MenuItem>
+                  <MenuItem onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <i className="bi bi-briefcase" style={{ marginRight: '8px' }}></i> Projects
+                  </MenuItem>
+                  <MenuItem onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <i className="bi bi-envelope" style={{ marginRight: '8px' }}></i> Contact
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+      
+      {/* Opacity Overlay */}
+      {isOpen && (
+        <Box
+          position="fixed"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          bg="rgba(0, 0, 0, 0.5)" // Adjust the opacity value as needed
+          zIndex={900} // Ensure this overlay is behind the navbar
+        />
+      )}
     </Box>
   );
 };
