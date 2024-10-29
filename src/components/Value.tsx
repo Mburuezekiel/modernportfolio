@@ -27,16 +27,20 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
 };
 
 export default function Values() {
+  // Define the title and description for the Values section
+  const title = "My Professional Values"; // Add a title for the Values section
+  const description = "Core principles that guide my work and commitments."; // Optional description
+
   return (
     <Box color="white" py="50px" textAlign="center" borderTop="2px solid #ff9900">
       <Container maxW="7xl">
-        <Heading fontSize="xl" color="#ffd700" mb="2">
-        {title}
-      </Heading>
-      <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
-      <Text color="white" fontSize="16px">
-        {description}
-      </Text>
+        <Heading fontSize="xl" color="#ffd700" mb="40px">
+          {title}
+        </Heading>
+        <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
+        <Text color="white" fontSize="16px" mb="40px"> {/* Added margin bottom for spacing */}
+          {description}
+        </Text>
         
         <Stack
           direction={{ base: 'column', md: 'row' }}
@@ -50,7 +54,7 @@ export default function Values() {
             description="I am dedicated to ensuring client success, as I believe that their achievements directly reflect my own. This commitment is evident in my transparent communication, adherence to deadlines, and unwavering quality in development services."
           />
           <ValueBox
-            icon={MessageSquare} // Updated to MessageSquare
+            icon={MessageSquare}
             title="Transparent Processes"
             description="Honest communication is vital for fostering strong partnerships. I prioritize transparency, ensuring that all stakeholders are informed and aligned throughout the project's lifecycle, from progress updates to addressing challenges."
           />
