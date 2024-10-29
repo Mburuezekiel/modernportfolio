@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Heading, Stack, Text, Icon, Divider } from '@chakra-ui/react';
-import { CheckCircle, MessageSquare, Briefcase } from 'lucide-react'; // Use MessageSquare instead of ChatLeftDots
+import { CheckCircle, MessageSquare, Briefcase } from 'lucide-react';
 
 const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title: string; description: string }) => {
   return (
@@ -31,7 +31,7 @@ export default function Values() {
     <Box bg="#1b3b5f" color="white" py="50px" textAlign="center" borderTop="5px solid #ff9900">
       <Container maxW="7xl">
         <Heading color="#ffd700" mb="40px">
-          Our Values
+          My Professional Values
         </Heading>
         <Stack
           direction={{ base: 'column', md: 'row' }}
@@ -41,18 +41,18 @@ export default function Values() {
         >
           <ValueBox
             icon={CheckCircle}
-            title="Client Commitment"
-            description="Our relentless dedication to clients stems from our integral belief that when you succeed, we succeed. You will see our commitment in the transparency of our communications and processes, our dedication to meeting delivery timelines, the quality of our development services, and our efforts to fulfill your requests."
+            title="Commitment to Clients"
+            description="I am dedicated to ensuring client success, as I believe that their achievements directly reflect my own. This commitment is evident in my transparent communication, adherence to deadlines, and unwavering quality in development services."
           />
           <ValueBox
             icon={MessageSquare} // Updated to MessageSquare
-            title="Process Transparency"
-            description="Honest communication is the foundation of our partnerships. Transparent communication ensures there are no surprises and that developers, clients, and stakeholders are on the same page. We openly discuss the project’s progress, blockers, changes in delivery dates or feature sets, and other important KPIs."
+            title="Transparent Processes"
+            description="Honest communication is vital for fostering strong partnerships. I prioritize transparency, ensuring that all stakeholders are informed and aligned throughout the project's lifecycle, from progress updates to addressing challenges."
           />
           <ValueBox
             icon={Briefcase}
-            title="Talent Retention"
-            description="Our talent is key to the success of our organization and our clients’ projects. That’s why we not only offer our specialists basic benefits but also regularly conduct salary reviews, provide opportunities for specialists to achieve their goals, and encourage them to share feedback. When our people prosper, we prosper."
+            title="Focus on Talent Retention"
+            description="The success of my projects hinges on the talent I nurture. I am committed to providing comprehensive benefits, conducting regular performance reviews, and creating an environment where team members can thrive and share their insights."
           />
         </Stack>
       </Container>
