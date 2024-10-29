@@ -19,7 +19,7 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
         {title}
       </Heading>
       <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
-      <Text color="blue" fontSize="16px">
+      <Text color="white" fontSize="16px">
         {description}
       </Text>
     </Box>
