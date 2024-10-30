@@ -1,6 +1,6 @@
 import React from 'react';
 import CALC from '../assets/Calc.jpg';
-import taskmate  from '../assets/taskui.webp';
+import taskmate from '../assets/taskui.webp';
 import {
   Box,
   Container,
@@ -28,7 +28,7 @@ const projects = [
   {
     title: 'Task Management App',
     description: 'A collaborative task management application with real-time updates and team features.',
-    image: 'taskmate',
+    image: taskmate,
     technologies: ['React', 'Firebase', 'Material-UI', 'Redux'],
     githubUrl: 'https://github.com/yourusername/project2',
     liveUrl: 'https://mytrackmate-app.vercel.app/',
