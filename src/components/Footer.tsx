@@ -16,7 +16,7 @@ export default function Footer() {
   const [copied, setCopied] = useState(false);
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText('https://your-portfolio-link.com'); // Update with your actual link
+    navigator.clipboard.writeText('https://ezekielmburuportfolio.vercel.app/'); // Update with your actual link
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); // Reset message after 2 seconds
   };
