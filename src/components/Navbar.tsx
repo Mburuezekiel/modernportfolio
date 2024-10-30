@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import logo from '../assets/favicon.ico';
 import {
@@ -19,7 +20,7 @@ import {
 import { Menu as MenuIcon, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
   const [showTooltip, setShowTooltip] = useState(false);
   const bg = useColorModeValue('white', 'gray.800');
@@ -30,6 +31,14 @@ const Navbar = () => {
     setTimeout(() => {
       setShowTooltip(false);
     }, 3000);
+  };
+
+  const handleMenuItemClick = (targetId) => {
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    onClose(); // Close menu after item is clicked
   };
 
   const NavLink = ({ children, icon }) => (
@@ -47,12 +56,7 @@ const Navbar = () => {
       }}
       onClick={() => {
         const targetId = children.toString().toLowerCase();
-        const element = document.getElementById(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          console.warn(`Element with ID "${targetId}" not found.`);
-        }
+        handleMenuItemClick(targetId);
       }}
     >
       <i className={`bi ${icon}`} style={{ marginRight: '8px' }}></i>
@@ -94,19 +98,19 @@ const Navbar = () => {
               <Menu isOpen={isOpen}>
                 <MenuButton as={IconButton} aria-label="Options" icon={<MenuIcon />} variant="ghost" onClick={onToggle} />
                 <MenuList>
-                  <MenuItem onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => handleMenuItemClick('home')}>
                     <i className="bi bi-house" style={{ marginRight: '8px' }}></i> Home
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => handleMenuItemClick('about')}>
                     <i className="bi bi-info-circle" style={{ marginRight: '8px' }}></i> About
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => handleMenuItemClick('skills')}>
                     <i className="bi bi-tools" style={{ marginRight: '8px' }}></i> Skills
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => handleMenuItemClick('projects')}>
                     <i className="bi bi-briefcase" style={{ marginRight: '8px' }}></i> Projects
                   </MenuItem>
-                  <MenuItem onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <MenuItem onClick={() => handleMenuItemClick('contact')}>
                     <i className="bi bi-envelope" style={{ marginRight: '8px' }}></i> Contact
                   </MenuItem>
                 </MenuList>
@@ -126,6 +130,7 @@ const Navbar = () => {
           bottom={0}
           bg="rgba(0, 0, 0, 0.5)" // Adjust the opacity here
           zIndex={900} // Ensure it is below the Navbar
+          onClick={onClose} // Close menu when clicking outside
         />
       )}
     </>
