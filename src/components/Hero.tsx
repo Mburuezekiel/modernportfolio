@@ -113,6 +113,7 @@ export default function Hero() {
                 <span className="text-sm md:text-base text-gray-700">
                   {hiText}
                 </span>
+                <br />
                 <span className="relative ml-2">
                   <span className="text-xl sm:text-2xl lg:text-4xl">
                     {nameText}
@@ -126,9 +127,9 @@ export default function Hero() {
               </div>
               <div className="h-4"></div>
               <div className="text-sm md:text-lg text-gray-600">
-                <span className="inline-block mr-2">{innovateText}</span>
-                <span className="inline-block mr-2">{inspireText}</span>
-                <span className="inline-block">{createText}</span>
+                <span className="inline-block mr-2"> ● {innovateText}</span>
+                <span className="inline-block mr-2"> ● {inspireText}</span>
+                <span className="inline-block"> ● {createText}</span>
               </div>
               <div className="mt-2 text-sm md:text-lg text-orange-500">
                 {roleText}
