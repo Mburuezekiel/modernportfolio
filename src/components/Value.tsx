@@ -15,7 +15,9 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
       textAlign="center"
     >
       <Icon as={icon} fontSize="40px" color="white" mb="20px" />
-      <Heading fontSize="xl" color="#ffd700" mb="2">
+      <Heading  fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}
+              fontWeight="bold"
+              mb={5}>
         {title}
       </Heading>
       <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
