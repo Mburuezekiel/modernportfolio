@@ -103,11 +103,7 @@ export default function Hero() {
       <div className="flex flex-col md:flex-row items-center justify-between py-20 md:py-28 space-y-10 md:space-y-0 md:space-x-10">
         {/* Left Column - Text Content */}
         <div className="flex-1 text-center md:text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+         
             <div className="leading-tight font-semibold text-3xl sm:text-4xl lg:text-6xl">
               <div className="relative inline-block">
                 <span className="text-sm md:text-base text-gray-700">
