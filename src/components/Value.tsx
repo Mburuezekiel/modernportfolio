@@ -17,6 +17,7 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
       <Icon as={icon} fontSize="30px" color="white" mb="20px" />
       <Heading  fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}
            color="#ffd700"
+        
               mb={2}>
         {title}
       </Heading>
@@ -30,7 +31,7 @@ const ValueBox = ({ icon, title, description }: { icon: React.ElementType; title
 
 export default function Values() {
   // Define the title and description for the Values section
-  const title = "My Professional  Values"; // Add a title for the Values section
+  const title = "Values"; // Add a title for the Values section
   const description = ""; // Optional description
 
   return (
@@ -38,6 +39,7 @@ export default function Values() {
       <Container maxW="7xl">
         <Heading fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}
               fontWeight="bold"
+          color={'brand.500'}
               mb={5}>
           {title}
         </Heading>
