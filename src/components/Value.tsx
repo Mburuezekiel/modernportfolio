@@ -36,7 +36,9 @@ export default function Values() {
   return (
     <Box color="white" py="50px" textAlign="center" borderTop="2px solid #ff9900">
       <Container maxW="7xl">
-        <Heading fontSize="xl" color="black" mb="40px">
+        <Heading fontSize={{ base: '3xl', sm: '4xl', md: '5xl' }}
+              fontWeight="bold"
+              mb={5}>
           {title}
         </Heading>
         <Divider borderColor="#ffd700" width="50px" margin="10px auto" />
