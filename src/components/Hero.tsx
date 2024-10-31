@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Mail, Github } from "lucide-react";
+
+// Import images (you'll need to adjust the import paths)
 import des from "../assets/webdes.jpeg";
 import dev from "../assets/webdev.jpeg";
 import brand from "../assets/branding.jpeg";
@@ -6,43 +10,80 @@ import log from "../assets/logo2.jpeg";
 import back from "../assets/background.webp";
 import code from "../assets/code.avif";
 import off from "../assets/code off.avif";
-import {
-  Container,
-  Stack,
-  Flex,
-  Box,
-  Heading,
-  Text,
-  Button,
-  Image,
-  useBreakpointValue,
-} from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { Github, Mail } from "lucide-react";
 
-const MotionBox = motion(Box);
-
-const images = [
-  log,
-  des,
-  dev,
-  brand,
-  back,
-  code,
-  off,
-];
+const images = [log, des, dev, brand, back, code, off];
 
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [hiText, setHiText] = useState('');
+  const [nameText, setNameText] = useState('');
+  const [roleText, setRoleText] = useState('');
+  const [innovateText, setInnovateText] = useState('');
+  const [inspireText, setInspireText] = useState('');
+  const [createText, setCreateText] = useState('');
+
+  const hiFullText = "Hi, I am";
+  const nameFullText = "Ezekiel Mburu";
+  const roleFullText = "Full Stack Developer";
+  const innovateFullText = "Innovate";
+  const inspireFullText = "Inspire";
+  const createFullText = "Create";
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    let isMounted = true;
+
+    const imageInterval = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // Change image every 5 seconds
+    }, 5000);
 
-    return () => clearInterval(interval);
+    const typeText = (fullText, setTextState, duration = 100) => {
+      return new Promise((resolve) => {
+        for (let i = 0; i <= fullText.length; i++) {
+          setTimeout(() => {
+            if (isMounted) {
+              setTextState(fullText.slice(0, i));
+              if (i === fullText.length) resolve();
+            }
+          }, i * duration);
+        }
+      });
+    };
+
+    const clearAllTexts = () => {
+      setHiText('');
+      setNameText('');
+      setRoleText('');
+      setInnovateText('');
+      setInspireText('');
+      setCreateText('');
+    };
+
+    const animationLoop = async () => {
+      while (isMounted) {
+        clearAllTexts();
+        await typeText(hiFullText, setHiText, 50);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await typeText(nameFullText, setNameText, 100);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await typeText(roleFullText, setRoleText, 50);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await typeText(innovateFullText, setInnovateText, 50);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await typeText(inspireFullText, setInspireText, 50);
+        await new Promise(resolve => setTimeout(resolve, 500));
+        await typeText(createFullText, setCreateText, 50);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    };
+
+    animationLoop();
+
+    return () => {
+      isMounted = false;
+      clearInterval(imageInterval);
+    };
   }, []);
 
   const scrollImages = (direction) => {
@@ -58,118 +99,104 @@ export default function Hero() {
   };
 
   return (
-    <Container maxW={"7xl"} id="home">
-      <Stack
-        align={"center"}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
-        direction={{ base: "column", md: "row" }}
-      >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <MotionBox
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="home">
+      <div className="flex flex-col md:flex-row items-center justify-between py-20 md:py-28 space-y-10 md:space-y-0 md:space-x-10">
+        {/* Left Column - Text Content */}
+        <div className="flex-1 text-center md:text-left">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
-            >
-              <Text
-                as={"span"}
-                position={"relative"}
-                _after={{
-                  content: "''",
-                  width: "full",
-                  height: "30%",
-                  position: "absolute",
-                  bottom: 1,
-                  left: 0,
-                  bg: "orange.300", // Using Chakra's built-in colors
-                  zIndex: -1,
-                }}
-              >
-                Ezekiel Mburu
-              </Text>
-              <br /><br />
-              <Text fontSize={{ base: "md", md: "lg" }} color="gray.600">
-                Innovate ● Inspire ● Create
-              </Text>
-              <Text as={"span"} color={"orange.500"} fontSize={{ base: "md", md: "lg" }}>
-                Full Stack Developer
-              </Text>
-            </Heading>
-            <Text color={"gray.500"} fontSize={"xl"}>
+            <div className="leading-tight font-semibold text-3xl sm:text-4xl lg:text-6xl">
+              <div className="relative inline-block">
+                <span className="text-sm md:text-base text-gray-700">
+                  {hiText}
+                </span>
+                <span className="relative ml-2">
+                  <span className="text-xl sm:text-2xl lg:text-4xl">
+                    {nameText}
+                    {nameText === nameFullText && (
+                      <span 
+                        className="absolute bottom-1 left-0 w-full h-[30%] bg-orange-300 -z-10"
+                      ></span>
+                    )}
+                  </span>
+                </span>
+              </div>
+              <div className="h-4"></div>
+              <div className="text-sm md:text-lg text-gray-600">
+                <span className="inline-block mr-2">{innovateText}</span>
+                <span className="inline-block mr-2">{inspireText}</span>
+                <span className="inline-block">{createText}</span>
+              </div>
+              <div className="mt-2 text-sm md:text-lg text-orange-500">
+                {roleText}
+                <motion.span
+                  animate={{ opacity: [1, 0] }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                  className="inline-block w-[2px] h-5 bg-orange-500 ml-1"
+                />
+              </div>
+            </div>
+
+            <p className="text-gray-500 text-xl mt-4">
               Passionate about creating innovative web solutions and turning
               ideas into reality through clean, efficient code.
-            </Text>
+            </p>
 
-            {/* <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: "column", sm: "row" }} mt={6}>
-              <Button
-                rounded={"full"}
-                size={"lg"}
-                fontWeight={"normal"}
-                px={6}
-                colorScheme={"orange"}
-                bg={"orange.400"}
-                _hover={{ bg: "orange.500" }}
-                leftIcon={<Mail size={20} />}
+            <div className="mt-6 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+              <button
+                className="rounded-full px-6 py-3 bg-orange-400 text-white hover:bg-orange-500 flex items-center justify-center space-x-2"
                 onClick={() =>
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                Contact Me
-              </Button>
-              <Button
-                rounded={"full"}
-                size={"lg"}
-                bg={"gray.700"}
-                color={"white"}
-                fontWeight={"normal"}
-                px={6}
-                leftIcon={<Github size={20} />}
+                <Mail size={20} />
+                <span>Contact Me</span>
+              </button>
+              <button
+                className="rounded-full px-6 py-3 bg-gray-700 text-white hover:bg-gray-800 flex items-center justify-center space-x-2"
                 onClick={() => window.open("https://github.com/Mburuezekiel", "_blank")}
               >
-                View Github
-              </Button>
-            </Stack> */}
-          </MotionBox>
-        </Stack>
+                <Github size={20} />
+                <span>View Github</span>
+              </button>
+            </div>
+          </motion.div>
+        </div>
 
-        <Flex flex={1} justify={"center"} align={"center"} position={"relative"} w={"full"}>
-          <Box position={"relative"} height={{ base: "250px", md: "400px" }} rounded={"2xl"} boxShadow={"2xl"} width={"full"} overflow={"hidden"}>
+        {/* Right Column - Image Carousel */}
+        <div className="flex-1 flex justify-center items-center">
+          <div className="relative w-full max-w-md h-[250px] md:h-[400px] rounded-2xl shadow-2xl overflow-hidden">
             <motion.div
               key={currentImageIndex}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.8 }}
+              className="w-full h-full"
             >
-              <Image
-                alt={"Hero Image"}
-                fit={"cover"}
-                align={"center"}
-                w={"100%"}
-                h={"100%"}
+              <img
+                alt="Hero Image"
+                className="w-full h-full object-cover"
                 src={images[currentImageIndex]}
               />
             </motion.div>
 
-            {/* Dots animation below the image */}
-            <Flex mt={4} justify="center">
+            {/* Dots animation */}
+            <div className="flex justify-center mt-4 space-x-2">
               {images.map((_, index) => (
                 <motion.div
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  style={{
-                    cursor: "pointer",
-                    width: 12,
-                    height: 12,
-                    margin: "0 6px",
-                    borderRadius: "50%",
-                    backgroundColor: currentImageIndex === index ? "#ff9900" : "#CBD5E0",
-                  }}
+                  className={`cursor-pointer w-3 h-3 rounded-full ${
+                    currentImageIndex === index ? 'bg-orange-500' : 'bg-gray-300'
+                  }`}
                   animate={{
                     scale: currentImageIndex === index ? 1.3 : 1,
                   }}
@@ -180,38 +207,24 @@ export default function Hero() {
                   }}
                 />
               ))}
-            </Flex>
+            </div>
 
-            {/* Arrow Buttons */}
-            <Button
-              position="absolute"
-              left="10px"
-              top="50%"
-              transform="translateY(-50%)"
+            {/* Navigation Buttons */}
+            <button
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/75 rounded-full w-10 h-10 flex items-center justify-center"
               onClick={() => scrollImages("left")}
-              variant="outline"
-              colorScheme="orange"
-              rounded="full"
-              color={"orange.400"}
             >
               &lt;
-            </Button>
-            <Button
-              position="absolute"
-              right="10px"
-              top="50%"
-              transform="translateY(-50%)"
+            </button>
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/75 rounded-full w-10 h-10 flex items-center justify-center"
               onClick={() => scrollImages("right")}
-              variant="outline"
-              colorScheme="orange"
-              rounded="full"
-              color={"orange.400"}
             >
               &gt;
-            </Button>
-          </Box>
-        </Flex>
-      </Stack>
-    </Container>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
