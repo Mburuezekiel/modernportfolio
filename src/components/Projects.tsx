@@ -31,7 +31,7 @@ const projects = [
     image: taskmate,
     technologies: ['React', 'Firebase', 'Material-UI', 'Redux'],
     githubUrl: 'https://github.com/yourusername/project2',
-    liveUrl: 'https://mytrackmate-app.vercel.app/',
+    liveUrl: 'https://trackmateapp.vercel.app/',
   },
   {
     title: 'AI Content Generator',
