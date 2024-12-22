@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ improve the ui of this ,,make more sugestion and more additional features ,,badjes, icon and many more modern and classic features import React, { useState } from 'react';
 import logo from '../assets/favicon.ico';
 import {
   Box,
@@ -10,18 +10,13 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  Tooltip,
-  Avatar,
-  Badge,
-  Input,
-  InputGroup,
-  InputRightElement,
   useDisclosure,
-  useColorMode,
   useColorModeValue,
   Container,
+  useColorMode,
+  Tooltip,
 } from '@chakra-ui/react';
-import { Menu as MenuIcon, Sun, Moon, Search, Bell } from 'lucide-react';
+import { Menu as MenuIcon, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -32,102 +27,89 @@ const Navbar = () => {
   const handleThemeToggle = () => {
     toggleColorMode();
     setShowTooltip(true);
-    setTimeout(() => setShowTooltip(false), 3000);
+    setTimeout(() => {
+      setShowTooltip(false);
+    }, 3000);
+  };
+
+  const handleMenuItemClick = (targetId) => {
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    onClose(); // Close menu after item is clicked
   };
 
   const NavLink = ({ children, icon }) => (
     <Button
       px={4}
       py={1}
-      rounded="md"
+      rounded={'md'}
       variant="ghost"
       display="flex"
       alignItems="center"
       gap={2}
-      _hover={{ bg: useColorModeValue('gray.200', 'gray.700') }}
+      _hover={{
+        textDecoration: 'none',
+        bg: useColorModeValue('gray.200', 'gray.700'),
+      }}
+      onClick={() => {
+        const targetId = children.toString().toLowerCase();
+        handleMenuItemClick(targetId);
+      }}
     >
-      <i className={`bi ${icon}`} style={{ marginRight: '8px' }}></i>
+      <i className={bi ${icon}} style={{ marginRight: '8px' }}></i>
       {children}
     </Button>
   );
 
   return (
     <>
-      <Box bg={bg} px={4} position="fixed" w="100%" top={0} zIndex={1000} boxShadow="lg" backdropFilter="blur(10px)">
+      <Box bg={bg} px={4} position="fixed" w="100%" top={0} zIndex={1000} boxShadow="sm">
         <Container maxW="container.xl">
-          <Flex h={16} alignItems="center" justifyContent="space-between">
-            {/* Logo */}
-            <Button variant="ghost" fontSize="xl" fontWeight="bold" display="flex" alignItems="center" gap={2}>
-              <img src={logo} alt="Logo" style={{ width: '30px' }} />
+          <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+            <Button variant="ghost" fontSize="xl" fontWeight="bold" display="flex" alignItems="center" gap={1}>
+              <img src={logo} alt="Ezekiel Njuguna" className="logo-image" />
               E.M
             </Button>
-
-            {/* Search Bar */}
-            <InputGroup display={{ base: 'none', md: 'flex' }} maxW="300px">
-              <Input placeholder="Search..." />
-              <InputRightElement>
-                <IconButton
-                  icon={<Search />}
-                  size="sm"
-                  variant="ghost"
-                  aria-label="Search"
-                />
-              </InputRightElement>
-            </InputGroup>
-
-            {/* Action Buttons */}
-            <HStack spacing={4} alignItems="center">
-              <Tooltip label={colorMode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}>
-                <IconButton
-                  icon={colorMode === 'light' ? <Moon /> : <Sun />}
-                  onClick={handleThemeToggle}
-                  variant="ghost"
-                  aria-label="Toggle theme"
-                />
-              </Tooltip>
-
-              {/* Notifications */}
+            <Tooltip 
+              label={colorMode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} 
+              aria-label="A tooltip"
+              isOpen={showTooltip}
+            >
               <IconButton
-                icon={
-                  <Badge colorScheme="red" borderRadius="full" px={2}>
-                    <Bell />
-                  </Badge>
-                }
+                icon={colorMode === 'light' ? <Moon /> : <Sun />}
+                onClick={handleThemeToggle}
                 variant="ghost"
-                aria-label="Notifications"
+                aria-label="Toggle theme"
               />
-
-              {/* User Avatar */}
-              <Menu>
-                <MenuButton>
-                  <Avatar size="sm" />
-                </MenuButton>
-                <MenuList>
-                  <MenuItem>View Profile</MenuItem>
-                  <MenuItem>Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </MenuList>
-              </Menu>
+            </Tooltip>
+            <HStack spacing={6} alignItems={'center'}>
+              <HStack as={'nav'} spacing={6} display={{ base: 'none', md: 'flex' }}>
+                <NavLink icon="bi-house">Home</NavLink>
+                <NavLink icon="bi-info-circle">About</NavLink>
+                <NavLink icon="bi-tools">Skills</NavLink>
+                <NavLink icon="bi-briefcase">Projects</NavLink>
+                <NavLink icon="bi-envelope">Contact</NavLink>
+              </HStack>
             </HStack>
-
-            {/* Mobile Menu */}
             <Box display={{ base: 'block', md: 'none' }}>
               <Menu isOpen={isOpen}>
                 <MenuButton as={IconButton} aria-label="Options" icon={<MenuIcon />} variant="ghost" onClick={onToggle} />
                 <MenuList>
-                  <MenuItem>
+                  <MenuItem onClick={() => handleMenuItemClick('home')}>
                     <i className="bi bi-house" style={{ marginRight: '8px' }}></i> Home
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem onClick={() => handleMenuItemClick('about')}>
                     <i className="bi bi-info-circle" style={{ marginRight: '8px' }}></i> About
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem onClick={() => handleMenuItemClick('skills')}>
                     <i className="bi bi-tools" style={{ marginRight: '8px' }}></i> Skills
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem onClick={() => handleMenuItemClick('projects')}>
                     <i className="bi bi-briefcase" style={{ marginRight: '8px' }}></i> Projects
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem onClick={() => handleMenuItemClick('contact')}>
                     <i className="bi bi-envelope" style={{ marginRight: '8px' }}></i> Contact
                   </MenuItem>
                 </MenuList>
@@ -136,6 +118,20 @@ const Navbar = () => {
           </Flex>
         </Container>
       </Box>
+
+      {/* Main Content Overlay */}
+      {isOpen && (
+        <Box
+          position="fixed"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          bg="rgba(0, 0, 0, 0.5)" // Adjust the opacity here
+          zIndex={900} // Ensure it is below the Navbar
+          onClick={onClose} // Close menu when clicking outside
+        />
+      )}
     </>
   );
 };
