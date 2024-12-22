@@ -90,9 +90,9 @@ export default function Hero() {
                   zIndex: -1,
                 }}
               >
-                <div class="animate-typing animate-blink-caret">
+               
     Ezekiel Mburu
-</div>
+
               
               </Text>
               <br /><br />
