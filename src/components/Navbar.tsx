@@ -114,7 +114,7 @@ const Navbar = () => {
                   <i className="bi bi-briefcase" style={{ marginRight: '8px' }}></i> Projects
                 </MenuItem>
                 <MenuItem onClick={() => document.getElementById('BlogPage')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <i className="bi bi-blog" style={{ marginRight: '8px' }}></i> Blogs
+                  <i className="bi bi-newspaper" style={{ marginRight: '8px' }}></i> Blogs
                 </MenuItem>
                 <MenuItem onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                   <i className="bi bi-envelope" style={{ marginRight: '8px' }}></i> Contact
