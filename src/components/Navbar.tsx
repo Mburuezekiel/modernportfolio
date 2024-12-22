@@ -90,7 +90,7 @@ const Navbar = () => {
               <NavLink icon="bi-info-circle">About</NavLink>
               <NavLink icon="bi-tools">Skills</NavLink>
               <NavLink icon="bi-briefcase">Projects</NavLink>
-              <NavLink icon="bi-newspaper">Blog</NavLink>
+              <NavLink icon="bi-newspaper">Blogs</NavLink>
               <NavLink icon="bi-envelope">Contact</NavLink>
             </HStack>
 
@@ -113,7 +113,7 @@ const Navbar = () => {
                 <MenuItem onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
                   <i className="bi bi-briefcase" style={{ marginRight: '8px' }}></i> Projects
                 </MenuItem>
-                <MenuItem onClick={() => document.getElementById('BlogPage')?.scrollIntoView({ behavior: 'smooth' })}>
+                <MenuItem onClick={() => document.getElementById('blogs')?.scrollIntoView({ behavior: 'smooth' })}>
                   <i className="bi bi-newspaper" style={{ marginRight: '8px' }}></i> Blogs
                 </MenuItem>
                 <MenuItem onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
