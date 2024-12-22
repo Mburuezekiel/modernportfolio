@@ -24,7 +24,7 @@ const blogs = [
 
 const BlogPage = () => {
   return (
-    <Box id="BlogPage" py={10} bg="gray.50">
+    <Box id="blogs" py={10} bg="gray.50">
       <Container maxW="container.xl">
         <Heading as="h1" size="xl" mb={6} textAlign="center">
           Blog Posts
