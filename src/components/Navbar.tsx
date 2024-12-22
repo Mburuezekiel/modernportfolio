@@ -9,6 +9,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  newspaper,
   MenuItem,
   useDisclosure,
   useColorModeValue,
@@ -89,7 +90,7 @@ const Navbar = () => {
               <NavLink icon="bi-info-circle">About</NavLink>
               <NavLink icon="bi-tools">Skills</NavLink>
               <NavLink icon="bi-briefcase">Projects</NavLink>
-              <NavLink icon="bi-blog">BlogPage</NavLink>
+              <NavLink icon="bi-newspaper">BlogPage</NavLink>
               <NavLink icon="bi-envelope">Contact</NavLink>
             </HStack>
 
