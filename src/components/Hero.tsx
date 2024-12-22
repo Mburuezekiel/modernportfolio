@@ -90,7 +90,10 @@ export default function Hero() {
                   zIndex: -1,
                 }}
               >
-                Ezekiel Mburu
+                <div class="animate-typing animate-blink-caret">
+    Ezekiel Mburu
+</div>
+              
               </Text>
               <br /><br />
               <Text fontSize={{ base: "md", md: "lg" }} color="gray.600">
