@@ -24,7 +24,7 @@ import JavaScriptCertificate from '../assets/Html.jpeg';
 import HTML from '../assets/Html.jpeg';
 import Operating   from '../assets/os.jpeg';
 import UI from '../assets/Ui ux.jpeg';
-
+import NetworkingCertificate '../assets/Networking Basics Cert .jpeg'
 import GitCertificate from '../assets/Html.jpeg';
 import AWSCertificate from '../assets/Html.jpeg';
 
@@ -43,7 +43,7 @@ const skills: SkillProps[] = [
   { name: 'Operating System', level: 100, color: 'green.400', certificate: Operating},
   { name: 'UI & UX ', level: 100, color: 'blue.400', certificate: UI },
   { name: 'CSS', level: 100, color: 'orange.400', certificate: HTML },
-  // { name: 'SQL/NoSQL', level: 80, color: 'purple.400', certificate: SQLCertificate },
+   { name: 'Networking Basics', level: 100, color: 'purple.400', certificate: NetworkingCertificate },
   { name: 'Git/Version Control', level: 85, color: 'red.400', certificate: GitCertificate },
   { name: 'AWS/Cloud Services', level: 70, color: 'teal.400', certificate: AWSCertificate },
 ];
