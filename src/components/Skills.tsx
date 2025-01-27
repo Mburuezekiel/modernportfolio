@@ -41,9 +41,10 @@ const skills: SkillProps[] = [
   { name: 'JavaScript/TypeScript', level: 100, color: 'yellow.400', certificate: JavaScriptCertificate },
   { name: 'HTML', level: 100, color: 'cyan.400', certificate: HTML },
   { name: 'Operating System', level: 100, color: 'green.400', certificate: Operating},
+   { name: 'Networking Basics', level: 100, color: 'purple.400', certificate: NetworkingCertificate },
   { name: 'UI & UX ', level: 100, color: 'blue.400', certificate: UI },
   { name: 'CSS', level: 100, color: 'orange.400', certificate: HTML },
-   { name: 'Networking Basics', level: 100, color: 'purple.400', certificate: NetworkingCertificate },
+  
   { name: 'Git/Version Control', level: 85, color: 'red.400', certificate: GitCertificate },
   { name: 'AWS/Cloud Services', level: 70, color: 'teal.400', certificate: AWSCertificate },
 ];
