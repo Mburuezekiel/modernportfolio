@@ -24,7 +24,7 @@ import JavaScriptCertificate from '../assets/Html.jpeg';
 import HTML from '../assets/Html.jpeg';
 import Operating   from '../assets/os.jpeg';
 import UI from '../assets/Ui ux.jpeg';
-import NetworkingCertificate '../assets/Networking Basics Cert .jpeg'
+import NetworkingCertificate from '../assets/Networking Basics Cert .jpeg'
 import GitCertificate from '../assets/Html.jpeg';
 import AWSCertificate from '../assets/Html.jpeg';
 
