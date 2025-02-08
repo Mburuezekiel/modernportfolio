@@ -38,7 +38,7 @@ const projects = [
     description: 'Inua Fund is a community-driven micro-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
     image: 'https://inua-fund.vercel.app/inua-fund-logo.svg',
     technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
-    githubUrl: 'https://github.com/Mburu Ezekiel/Inua Fund',
+    githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git',
     liveUrl: 'https://inua-fund.vercel.app/',
   },
   {
