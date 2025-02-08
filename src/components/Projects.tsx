@@ -34,6 +34,14 @@ const projects = [
     liveUrl: 'https://trackmateapp.vercel.app/',
   },
   {
+    title: 'Inua Fund – Micro-Funding Platform',
+    description: 'Inua Fund is a community-driven micro-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
+    image: 'https://inua-fund.vercel.app/inua-fund-logo.svg',
+    technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
+    githubUrl: 'https://github.com/Mburu Ezekiel/Inua Fund',
+    liveUrl: 'https://inua-fund.vercel.app/',
+  },
+  {
     title: 'AI Content Generator',
     description: 'An AI-powered application that generates various types of content using machine learning.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
