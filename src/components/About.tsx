@@ -1,5 +1,5 @@
 import React from 'react';
-import ME from "../assets/my passport.jpg"; 
+import ME from "../assets/OfficialPic.jpeg"; 
 import {
   Container,
   Stack,
