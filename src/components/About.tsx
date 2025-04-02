@@ -93,7 +93,7 @@ export default function About() {
               width={{ base: "250px", md: "280px" }}
               height={{ base: "250px", md: "280px" }}
               position="relative"
-              borderRadius="50%"
+              borderRadius="70%"
               overflow="hidden"
               boxShadow="xl"
               border="4px solid"
