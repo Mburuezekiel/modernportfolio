@@ -188,44 +188,49 @@ const Navbar = () => {
       transition="all 0.3s ease"
       borderBottom={scrolled ? `1px solid ${borderColor}` : 'none'}
     >
-      <Container maxW="container.xl">
+      <Container maxW="container.xl" px={4}>
         <Flex h={16} alignItems="center" justifyContent="space-between">
-          {/* Logo */}
-          <MotionBox
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            display="flex"
-            alignItems="center"
-          >
-            <Button 
-              variant="ghost" 
-              fontSize="xl" 
-              fontWeight="bold" 
-              display="flex" 
-              alignItems="center" 
-              gap={2}
-              color={logoTextColor}
-              _hover={{ bg: 'transparent' }}
-              onClick={() => scrollToSection('home')}
+          {/* Logo & Menu Container */}
+          <Flex flex={1} alignItems="center">
+            {/* Logo */}
+            <MotionBox
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              display="flex"
+              alignItems="center"
+              mr={6}
             >
-              <Image src={logo} alt="Logo" boxSize="30px" />
-              <Text>E.M</Text>
-            </Button>
-          </MotionBox>
+              <Button 
+                variant="ghost" 
+                fontSize="xl" 
+                fontWeight="bold" 
+                display="flex" 
+                alignItems="center" 
+                gap={2}
+                color={logoTextColor}
+                _hover={{ bg: 'transparent' }}
+                onClick={() => scrollToSection('home')}
+                pl={0}
+              >
+                <Image src={logo} alt="Logo" boxSize="30px" />
+                <Text>E.M</Text>
+              </Button>
+            </MotionBox>
 
-          {/* Desktop Navigation */}
-          <MotionBox
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <HStack as="nav" spacing={1} display={{ base: 'none', md: 'flex' }}>
-              {navItems.map((item) => (
-                <NavLink key={item.id} item={item} />
-              ))}
-            </HStack>
-          </MotionBox>
+            {/* Desktop Navigation - Now directly next to logo */}
+            <MotionBox
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <HStack as="nav" spacing={1} display={{ base: 'none', md: 'flex' }} alignItems="center">
+                {navItems.map((item) => (
+                  <NavLink key={item.id} item={item} />
+                ))}
+              </HStack>
+            </MotionBox>
+          </Flex>
 
           {/* Theme Toggle Button */}
           <HStack spacing={3}>
