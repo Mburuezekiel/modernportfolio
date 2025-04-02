@@ -247,8 +247,8 @@ export default function Hero() {
                   fontWeight="semibold"
                   px={6}
                   py={6}
-                  color={'brand.500'}
-{/*                   colorScheme="orange" */}
+                
+               colorScheme="orange" 
                   bg="orange.400"
                   _hover={{ bg: buttonHoverBg }}
                   leftIcon={<Mail size={20} />}

@@ -21,7 +21,7 @@ import {
   VStack,
   Drawer,
 } from '@chakra-ui/react';
-import { Menu as MenuIcon, Sun, Moon, Home, Info, Tool, Briefcase, FileText, Mail, X } from 'lucide-react';
+import { Menu as MenuIcon, Sun, Moon, Home, Info, Wrench, Briefcase, FileText, Mail, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MotionBox = motion(Box);
@@ -30,7 +30,7 @@ const MotionFlex = motion(Flex);
 const navItems = [
   { name: 'Home', icon: <Home size={18} />, id: 'home' },
   { name: 'About', icon: <Info size={18} />, id: 'about' },
-  { name: 'Skills', icon: <Tool size={18} />, id: 'skills' },
+  { name: 'Skills', icon: <Wrench size={18} />, id: 'skills' },
   { name: 'Projects', icon: <Briefcase size={18} />, id: 'projects' },
   { name: 'Blogs', icon: <FileText size={18} />, id: 'blogs' },
   { name: 'Contact', icon: <Mail size={18} />, id: 'contact' }
