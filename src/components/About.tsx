@@ -88,9 +88,12 @@ export default function About() {
             gap={{ base: 8, md: 12 }}
             w="full"
           >
+            {/* Perfect circle image container */}
             <Box 
-              maxW={{ base: '300px', md: '350px' }}
-              borderRadius="full"
+              width={{ base: "250px", md: "280px" }}
+              height={{ base: "250px", md: "280px" }}
+              position="relative"
+              borderRadius="50%"
               overflow="hidden"
               boxShadow="xl"
               border="4px solid"
@@ -99,9 +102,9 @@ export default function About() {
               <Image 
                 src={ME} 
                 alt="Ezekiel Njuguna" 
-                w="100%" 
-                h="50%"
                 objectFit="cover"
+                width="100%"
+                height="100%"
                 transition="transform 0.3s ease"
                 _hover={{ transform: 'scale(1.05)' }}
               />
@@ -145,7 +148,7 @@ export default function About() {
                 >
                   GitHub
                 </Button>
-{/*                 <Button
+                <Button
                   rounded={"full"}
                   size={{ base: "md", md: "lg" }}
                   bg={"brand.500"}
@@ -157,7 +160,7 @@ export default function About() {
                   onClick={() => window.open("/resume.pdf", "_blank")}
                 >
                   Resume
-                </Button> */}
+                </Button>
               </HStack>
             </VStack>
           </Flex>
