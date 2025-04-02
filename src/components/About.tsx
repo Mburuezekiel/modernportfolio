@@ -148,7 +148,7 @@ export default function About() {
                 >
                   GitHub
                 </Button>
-                <Button
+{/*                 <Button
                   rounded={"full"}
                   size={{ base: "md", md: "lg" }}
                   bg={"brand.500"}
@@ -160,7 +160,7 @@ export default function About() {
                   onClick={() => window.open("/resume.pdf", "_blank")}
                 >
                   Resume
-                </Button>
+                </Button> */}
               </HStack>
             </VStack>
           </Flex>
