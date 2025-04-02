@@ -6,10 +6,6 @@ import {
   HStack,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   useDisclosure,
   useColorModeValue,
   Container,
@@ -17,19 +13,19 @@ import {
   Tooltip,
   Image,
   Text,
-  Collapse,
-  Drawer,
   DrawerBody,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  VStack
+  VStack,
+  Drawer,
 } from '@chakra-ui/react';
 import { Menu as MenuIcon, Sun, Moon, Home, Info, Tool, Briefcase, FileText, Mail, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
 
 const navItems = [
   { name: 'Home', icon: <Home size={18} />, id: 'home' },
@@ -46,6 +42,7 @@ const Navbar = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
   
   const bg = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');
@@ -53,6 +50,7 @@ const Navbar = () => {
   const hoverBg = useColorModeValue('gray.100', 'gray.700');
   const activeBg = useColorModeValue('orange.50', 'gray.700');
   const activeColor = useColorModeValue('orange.500', 'orange.300');
+  const menuItemBg = useColorModeValue('white', 'gray.800');
 
   // Handle scroll events for navbar appearance
   useEffect(() => {
@@ -103,29 +101,80 @@ const Navbar = () => {
     }
   };
 
-  const NavLink = ({ item }) => (
-    <Button
-      px={4}
-      py={2}
-      rounded="md"
-      variant="ghost"
-      display="flex"
-      alignItems="center"
-      justifyContent="flex-start"
-      gap={2}
-      width="full"
-      color={activeSection === item.id ? activeColor : undefined}
-      bg={activeSection === item.id ? activeBg : undefined}
-      _hover={{
-        bg: hoverBg,
-      }}
-      onClick={() => scrollToSection(item.id)}
-      transition="all 0.2s"
-    >
-      {item.icon}
-      {item.name}
-    </Button>
-  );
+  const NavLink = ({ item }) => {
+    const isActive = activeSection === item.id;
+    const isHovered = hoveredItem === item.id;
+    
+    return (
+      <Box position="relative">
+        <Button
+          px={4}
+          py={2}
+          rounded="md"
+          variant="ghost"
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-start"
+          gap={2}
+          width="full"
+          color={isActive ? activeColor : undefined}
+          bg="transparent"
+          _hover={{ bg: 'transparent' }}
+          onClick={() => scrollToSection(item.id)}
+          transition="all 0.2s"
+          onMouseEnter={() => setHoveredItem(item.id)}
+          onMouseLeave={() => setHoveredItem(null)}
+          position="relative"
+          zIndex={2}
+        >
+          {item.icon}
+          {item.name}
+        </Button>
+        
+        {/* Active/Hover indicator that slides */}
+        <AnimatePresence>
+          {(isActive || isHovered) && (
+            <MotionBox
+              position="absolute"
+              bottom={0}
+              left={0}
+              right={0}
+              height="full"
+              bg={isActive ? activeBg : hoverBg}
+              borderRadius="md"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              zIndex={1}
+            />
+          )}
+        </AnimatePresence>
+      </Box>
+    );
+  };
+
+  const mobileVariants = {
+    hidden: { opacity: 0, x: 300 },
+    visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
+    exit: { opacity: 0, x: 300, transition: { duration: 0.2 } }
+  };
+
+  // Staggered animation for mobile menu items
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
 
   return (
     <Box 
@@ -211,36 +260,93 @@ const Navbar = () => {
         </Flex>
       </Container>
 
-      {/* Mobile Navigation Drawer */}
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="xs">
-        <DrawerOverlay />
-        <DrawerContent bg={bg}>
-          <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px">Navigation</DrawerHeader>
-          <DrawerBody py={4}>
-            <VStack spacing={2} align="stretch">
-              {navItems.map((item) => (
-                <Button
-                  key={item.id}
-                  leftIcon={item.icon}
-                  justifyContent="flex-start"
-                  variant="ghost"
-                  isActive={activeSection === item.id}
-                  _active={{
-                    bg: activeBg,
-                    color: activeColor
-                  }}
-                  onClick={() => scrollToSection(item.id)}
-                  py={6}
-                  borderRadius="md"
+      {/* Mobile Navigation Drawer with Enhanced Animation */}
+      <AnimatePresence>
+        {isOpen && (
+          <Drawer
+            isOpen={isOpen}
+            placement="right"
+            onClose={onClose}
+            size="xs"
+          >
+            <DrawerOverlay />
+            <DrawerContent
+              as={motion.div}
+              variants={mobileVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              bg={bg}
+            >
+              <DrawerCloseButton />
+              <DrawerHeader borderBottomWidth="1px">
+                <MotionFlex
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  alignItems="center"
+                  gap={2}
                 >
-                  {item.name}
-                </Button>
-              ))}
-            </VStack>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+                  <Image src={logo} alt="Logo" boxSize="25px" />
+                  <Text>Navigation</Text>
+                </MotionFlex>
+              </DrawerHeader>
+              <DrawerBody py={4}>
+                <VStack
+                  spacing={3}
+                  align="stretch"
+                  as={motion.div}
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="show"
+                >
+                  {navItems.map((item, index) => (
+                    <MotionBox
+                      key={item.id}
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      overflow="hidden"
+                      borderRadius="md"
+                      position="relative"
+                    >
+                      <Button
+                        leftIcon={item.icon}
+                        justifyContent="flex-start"
+                        variant="ghost"
+                        width="full"
+                        py={6}
+                        borderRadius="md"
+                        onClick={() => scrollToSection(item.id)}
+                        position="relative"
+                        zIndex={2}
+                        bg="transparent"
+                      >
+                        {item.name}
+                      </Button>
+                      {activeSection === item.id && (
+                        <MotionBox
+                          position="absolute"
+                          top={0}
+                          left={0}
+                          right={0}
+                          bottom={0}
+                          bg={activeBg}
+                          borderRadius="md"
+                          initial={{ x: "-100%" }}
+                          animate={{ x: 0 }}
+                          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                          zIndex={1}
+                        />
+                      )}
+                    </MotionBox>
+                  ))}
+                </VStack>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+        )}
+      </AnimatePresence>
     </Box>
   );
 };
