@@ -23,7 +23,7 @@ const projects = [
     image: 'https://www.inuafund.co.ke/icon-192x192.png',
     technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
     // githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git',
-     githubUrl: '',
+    //  githubUrl: '',
     liveUrl: 'https://inua-fund.vercel.app/',
   },
   {
