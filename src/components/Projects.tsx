@@ -18,12 +18,13 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with payment integration, user authentication, and admin dashboard.',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    githubUrl: 'https://github.com/yourusername/project1',
-    liveUrl: 'https://project1.com',
+    title: 'Inua Fund – Micro-Funding Platform',
+    description: 'Inua Fund is a community-driven micro-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
+    image: 'https://www.inuafund.co.ke/icon-192x192.png',
+    technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
+    // githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git',
+     githubUrl: '',
+    liveUrl: 'https://inua-fund.vercel.app/',
   },
   {
     title: 'Task Management App',
@@ -34,14 +35,23 @@ const projects = [
     liveUrl: 'https://trackmateapp.vercel.app/',
   },
   {
-    title: 'Inua Fund – Micro-Funding Platform',
-    description: 'Inua Fund is a community-driven micro-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
-    image: 'https://inua-fund.vercel.app/inua-fund-logo.svg',
-    technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
-    // githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git',
-     githubUrl: '',
-    liveUrl: 'https://inua-fund.vercel.app/',
+    title: 'Sum Array Calculator',
+    description: 'A simple web application to calculate the sum of an array of numbers.',
+    image: CALC,
+    technologies: ['React', 'Chakra UI', 'JavaScript'],
+    githubUrl: 'https://github.com/yourusername/project4',
+    liveUrl: 'https://array-sum-calculator.vercel.app/',
   },
+  {
+    title: 'E-Commerce Platform',
+    description: 'A full-featured e-commerce platform with payment integration, user authentication, and admin dashboard.',
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+    githubUrl: 'https://github.com/yourusername/project1',
+    liveUrl: 'https://project1.com',
+  },
+  
+  
   {
     title: 'AI Content Generator',
     description: 'An AI-powered application that generates various types of content using machine learning.',
@@ -50,14 +60,7 @@ const projects = [
     githubUrl: 'https://github.com/yourusername/project3',
     liveUrl: 'https://project3.com',
   },
-  {
-    title: 'Sum Array Calculator',
-    description: 'A simple web application to calculate the sum of an array of numbers.',
-    image: CALC,
-    technologies: ['React', 'Chakra UI', 'JavaScript'],
-    githubUrl: 'https://github.com/yourusername/project4',
-    liveUrl: 'https://array-sum-calculator.vercel.app/',
-  },
+  
 ];
 
 const ProjectCard = ({ title, description, image, technologies, githubUrl, liveUrl }) => {
