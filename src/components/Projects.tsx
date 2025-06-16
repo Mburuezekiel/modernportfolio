@@ -43,12 +43,12 @@ const projects = [
     liveUrl: 'https://array-sum-calculator.vercel.app/',
   },
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with payment integration, user authentication, and admin dashboard.',
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    githubUrl: 'https://github.com/yourusername/project1',
-    liveUrl: 'https://project1.com',
+    title: 'Paystack Payment Intergration',
+    description: 'This project seamlessly integrates Paystacks payment gateway, providing a robust and secure solution for processing online transactions. Built with React for a dynamic user experience, and supported by MongoDB for data management, it offers a streamlined payment flow. Shadcn UI components ensure a modern and polished interface.',
+    image: 'https://www.inuafund.co.ke/Paystack.png',
+    technologies: ['React',  'MongoDB', 'Shadcn'],
+    githubUrl: 'https://github.com/Mburuezekiel/Paystack-Payment-Intergration.git',
+    // liveUrl: 'https://project1.com',
   },
   
   
@@ -124,7 +124,7 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
         </Stack>
       </Stack>
       <Stack mt={8} direction={'row'} spacing={4}>
-        <Button
+        {/* <Button
           flex={1}
           fontSize={'sm'}
           bg={'gray.700'}
@@ -133,7 +133,7 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
           onClick={() => window.open(githubUrl, '_blank')}
         >
           Code
-        </Button>
+        </Button> */}
         <Button
           flex={1}
           fontSize={'sm'}
