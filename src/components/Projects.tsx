@@ -35,7 +35,7 @@ const projects = [
     description: 'Pamoja Electronics is a cutting-edge e-commerce platform that specializes in electronics and gadgets. It offers a seamless shopping experience with a wide range of products, secure payment options, and fast delivery services.',
     image: pamoja,
     technologies: ['React', 'Express', 'MongoDB', 'Shadcn' ],
-    githubUrl: 'https://github.com/yourusername/project2',
+    githubUrl: 'https://github.com/Mburuezekiel/pamoja-e-commerce-hub.git',
     liveUrl: 'https://pamojaelectronics.vercel.app/',
   },
   {
