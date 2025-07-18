@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../components/Layout'; // Adjust path as necessary
+import Layout from '../components/Layout';
 import {
   Box,
   Container,
@@ -9,20 +9,18 @@ import {
   Image,
   Stack,
   Badge,
-  Link, // Using Chakra UI's Link for navigation on the same page
+  Link,
   VStack,
   useColorModeValue,
   Flex,
 } from '@chakra-ui/react';
-import { motion, AnimatePresence } from 'framer-motion'; // Import motion and AnimatePresence
-import image1 from '../assets/code.avif'; // Ensure this path is correct
+import { motion, AnimatePresence } from 'framer-motion';
+import image1 from '../assets/code.avif';
 
-// Define motion Box for animating Chakra components
 const MotionBox = motion(Box);
 const MotionSimpleGrid = motion(SimpleGrid);
 const MotionContainer = motion(Container);
 
-// Blog post type definition
 interface BlogPost {
   id: string;
   title: string;
@@ -32,10 +30,9 @@ interface BlogPost {
   tags: string[];
   image?: string;
   slug: string;
-  content: string; // Add the content field for the full article
+  content: string;
 }
 
-// Sample blog data (replace with actual data from a CMS or API)
 const sampleBlogPosts: BlogPost[] = [
   {
     id: '1',
@@ -210,7 +207,6 @@ const sampleBlogPosts: BlogPost[] = [
   },
 ];
 
-// Get all unique tags from blog posts
 function getAllTags(posts: BlogPost[]): string[] {
   const tagsSet = new Set<string>();
   posts.forEach(post => {
@@ -223,10 +219,9 @@ export default function Blog() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(sampleBlogPosts);
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null); // State for the currently viewed post
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const allTags = getAllTags(sampleBlogPosts);
 
-  // Animation variants for Framer Motion
   const listVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, staggerChildren: 0.1 } },
@@ -245,7 +240,6 @@ export default function Blog() {
   };
 
   useEffect(() => {
-    // Filter posts based on search term and active tag when not viewing a single post
     if (!selectedPost) {
       let results = sampleBlogPosts;
 
@@ -264,7 +258,6 @@ export default function Blog() {
 
       setFilteredPosts(results);
     }
-    // No window.scrollTo here, Framer Motion will handle visual transitions
   }, [searchTerm, activeTag, selectedPost]);
 
   const handleTagClick = (tag: string) => {
@@ -273,12 +266,10 @@ export default function Blog() {
 
   const handlePostClick = (post: BlogPost) => {
     setSelectedPost(post);
-    // Removed window.scrollTo here to allow Framer Motion to manage the transition smoothly
   };
 
   const handleBackToPosts = () => {
     setSelectedPost(null);
-    // Removed window.scrollTo here
   };
 
   const blogContentBg = useColorModeValue('white', 'gray.900');
@@ -290,13 +281,13 @@ export default function Blog() {
         <meta name="description" content={selectedPost ? selectedPost.description : "Read my latest thoughts and tutorials on web development, design, and technology."} />
       </div>
 
-      <Layout> {/* Wrap everything in Layout */}
+      <Layout>
         <main id="blogs" className="container mx-auto px-4 py-12 min-h-screen">
           <div className="max-w-4xl mx-auto">
-            <AnimatePresence mode="wait"> {/* Use AnimatePresence for exit animations */}
-              {!selectedPost ? ( // Conditional rendering for blog list vs. single post
+            <AnimatePresence mode="wait">
+              {!selectedPost ? (
                 <MotionBox
-                  key="blogList" // Unique key for AnimatePresence
+                  key="blogList"
                   initial="hidden"
                   animate="visible"
                   exit="exit"
@@ -304,32 +295,8 @@ export default function Blog() {
                 >
                   <h1 className="text-4xl font-bold mb-8 text-center">Blogs</h1>
 
-                  {/* Search and filter section */}
                   <Box mb={10}>
-                    {/* <Box position="relative" mb={6}>
-                      <input
-                        type="text"
-                        placeholder="Search articles..."
-                        className="w-full p-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 dark:border-gray-700"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                      />
-                      <svg
-                        className="absolute left-3 top-3.5 w-5 h-5 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                    </Box> */}
-
+{}
                     <Flex flexWrap="wrap" gap={2}>
                       {allTags.map(tag => (
                         <button
@@ -355,15 +322,14 @@ export default function Blog() {
                     </Flex>
                   </Box>
 
-                  {/* Blog posts Grid */}
                   {filteredPosts.length > 0 ? (
                     <MotionSimpleGrid
                       columns={{ base: 1, md: 2 }}
                       spacing={8}
-                      variants={listVariants} // Apply list variants to the grid
+                      variants={listVariants}
                     >
                       {filteredPosts.map(post => (
-                        <MotionBox // Animate each individual card
+                        <MotionBox
                           key={post.id}
                           onClick={() => handlePostClick(post)}
                           className="group"
@@ -377,7 +343,7 @@ export default function Blog() {
                           }}
                           transition="all 0.2s ease-in-out"
                           bg={useColorModeValue('white', 'gray.800')}
-                          variants={itemVariants} // Apply item variants
+                          variants={itemVariants}
                         >
                           {post.image && (
                             <Box h="48" overflow="hidden">
@@ -391,7 +357,7 @@ export default function Blog() {
                                 _groupHover={{ transform: 'scale(1.05)' }}
                                 onError={(e) => {
                                   const target = e.target as HTMLImageElement;
-                                  target.src = `https://placehold.co/400x200/cccccc/333333?text=Image+Missing`; // Fallback placeholder image
+                                  target.src = `https://placehold.co/400x200/cccccc/333333?text=Image+Missing`;
                                 }}
                               />
                             </Box>

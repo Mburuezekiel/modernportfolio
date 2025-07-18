@@ -16,7 +16,7 @@ import {
   Link,
   Button,
   useColorModeValue,
-  Tooltip, // Import Tooltip for the hover effect
+  Tooltip,
 } from '@chakra-ui/react';
 import { ExternalLink, Github } from 'lucide-react';
 
@@ -26,9 +26,9 @@ const projects = [
     description: 'Inua Fund is a community-driven crowd-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
     image: crowdfunding,
     technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
-    githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git', // Keep the URL here
+    githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git',
     liveUrl: 'https://inua-fund.vercel.app/',
-    isPrivate: true, // Add a new property to mark it as private
+    isPrivate: true,
   },
    {
     title: 'Pamoja Electronics – E-commerce Platform',
@@ -60,7 +60,6 @@ const projects = [
     image: paystack,
     technologies: ['React',  'MongoDB', 'Shadcn'],
     githubUrl: 'https://github.com/Mburuezekiel/Paystack-Payment-Intergration.git',
-    // liveUrl: 'https://project1.com',
   },
   
   
@@ -141,17 +140,17 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
             <Button
               flex={1}
               fontSize={'sm'}
-              bg={'gray.600'} // Gray out the button
+              bg={'gray.600'}
               rounded={'full'}
               leftIcon={<Github size={20} />}
-              cursor="not-allowed" // Change cursor to indicate it's not clickable
-              isDisabled // Disable the button
+              cursor="not-allowed"
+              isDisabled
             >
               Code
             </Button>
           </Tooltip>
         ) : (
-          githubUrl && ( // Only show if githubUrl exists
+          githubUrl && (
             <Button
               flex={1}
               fontSize={'sm'}

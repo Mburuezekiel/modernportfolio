@@ -20,6 +20,7 @@ import {
   DrawerCloseButton,
   VStack,
   Drawer,
+  Divider,
 } from '@chakra-ui/react';
 import { Menu as MenuIcon, Sun, Moon, Home, Info, Wrench, Briefcase, FileText, Mail, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -50,37 +51,29 @@ const Navbar = () => {
   const hoverBg = useColorModeValue('gray.100', 'gray.700');
   const activeBg = useColorModeValue('orange.50', 'gray.700');
   const activeColor = useColorModeValue('orange.500', 'orange.300');
-  const menuItemBg = useColorModeValue('white', 'gray.800');
 
-  // Handle scroll events for navbar appearance
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       
-      // Add shadow and change background opacity when scrolled
-      if (scrollPosition > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(scrollPosition > 20);
 
-      // Determine active section based on scroll position
-      const sections = navItems.map(item => document.getElementById(item.id));
-      const validSections = sections.filter(section => section !== null);
-      
-      for (let i = validSections.length - 1; i >= 0; i--) {
-        const section = validSections[i];
+      let currentActive = 'home';
+      for (const item of navItems) {
+        const section = document.getElementById(item.id);
         if (section) {
           const rect = section.getBoundingClientRect();
-          if (rect.top <= 150) {
-            setActiveSection(section.id);
-            break;
+          if (rect.top <= 150 && rect.bottom > 100) {
+            currentActive = item.id;
+            break; 
           }
         }
       }
+      setActiveSection(currentActive);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -95,9 +88,18 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       setActiveSection(id);
-      onClose(); // Close mobile menu if open
+      onClose();
     }
   };
 
@@ -131,7 +133,6 @@ const Navbar = () => {
           {item.name}
         </Button>
         
-        {/* Active/Hover indicator that slides */}
         <AnimatePresence>
           {(isActive || isHovered) && (
             <MotionBox
@@ -155,12 +156,11 @@ const Navbar = () => {
   };
 
   const mobileVariants = {
-    hidden: { opacity: 0, x: 300 },
-    visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } },
-    exit: { opacity: 0, x: 300, transition: { duration: 0.2 } }
+    hidden: { opacity: 0, x: "100%" },
+    visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
+    exit: { opacity: 0, x: "100%", transition: { duration: 0.3 } }
   };
 
-  // Staggered animation for mobile menu items
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -190,89 +190,90 @@ const Navbar = () => {
     >
       <Container maxW="container.xl" px={4}>
         <Flex h={16} alignItems="center" justifyContent="space-between">
-          {/* Logo & Menu Container */}
-          <Flex flex={1} alignItems="center">
-            {/* Logo */}
-            <MotionBox
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              display="flex"
-              alignItems="center"
-              mr={6}
+          <MotionBox
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            display="flex"
+            alignItems="center"
+          >
+            <Button 
+              variant="ghost" 
+              fontSize="xl" 
+              fontWeight="bold" 
+              display="flex" 
+              alignItems="center" 
+              gap={2}
+              color={logoTextColor}
+              _hover={{ bg: 'transparent' }}
+              onClick={() => scrollToSection('home')}
+              pl={0}
             >
-              <Button 
-                variant="ghost" 
-                fontSize="xl" 
-                fontWeight="bold" 
-                display="flex" 
-                alignItems="center" 
-                gap={2}
-                color={logoTextColor}
-                _hover={{ bg: 'transparent' }}
-                onClick={() => scrollToSection('home')}
-                pl={0}
-              >
-                <Image src={logo} alt="Logo" boxSize="30px" />
-                <Text>E.M</Text>
-              </Button>
-            </MotionBox>
+              <Image src={logo} alt="Logo" boxSize="30px" />
+              <Text>E.M</Text>
+            </Button>
+          </MotionBox>
 
-            {/* Desktop Navigation - Now directly next to logo */}
-            <MotionBox
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <HStack as="nav" spacing={1} display={{ base: 'none', md: 'flex' }} alignItems="center">
-                {navItems.map((item) => (
-                  <NavLink key={item.id} item={item} />
-                ))}
-              </HStack>
-            </MotionBox>
+          <Flex alignItems="center" display={{ base: 'none', md: 'flex' }}>
+            <HStack as="nav" spacing={1} alignItems="center">
+              {navItems.map((item) => (
+                <NavLink key={item.id} item={item} />
+              ))}
+              <Tooltip 
+                label={colorMode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} 
+                placement="bottom"
+                isOpen={showTooltip}
+                hasArrow
+              >
+                <IconButton
+                  icon={colorMode === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+                  onClick={handleThemeToggle}
+                  variant="ghost"
+                  aria-label="Toggle theme"
+                  size="md"
+                  color={useColorModeValue('gray.600', 'yellow.400')}
+                  _hover={{ bg: hoverBg }}
+                  ml={2}
+                />
+              </Tooltip>
+            </HStack>
           </Flex>
 
-          {/* Theme Toggle Button */}
-          <HStack spacing={3}>
-            <Tooltip 
-              label={colorMode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'} 
-              placement="bottom"
-              isOpen={showTooltip}
-              hasArrow
-            >
-              <IconButton
-                icon={colorMode === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-                onClick={handleThemeToggle}
-                variant="ghost"
-                aria-label="Toggle theme"
-                size="md"
-                color={useColorModeValue('gray.600', 'yellow.400')}
-                _hover={{ bg: hoverBg }}
-              />
-            </Tooltip>
-
-            {/* Mobile Menu Button */}
-            <Box display={{ base: 'block', md: 'none' }}>
-              <IconButton
-                aria-label="Open Menu"
-                icon={isOpen ? <X size={20} /> : <MenuIcon size={20} />}
-                onClick={isOpen ? onClose : onOpen}
-                variant="ghost"
-                _hover={{ bg: hoverBg }}
-              />
-            </Box>
-          </HStack>
+          <Box display={{ base: 'block', md: 'none' }}>
+             <Tooltip 
+                        label={colorMode === 'light' ? 'Activate Dark Mode' : 'Activate Light Mode'} 
+                        placement="left"
+                        isOpen={showTooltip}
+                        hasArrow
+                      >
+                        <IconButton
+                          icon={colorMode === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+                          onClick={handleThemeToggle}
+                          variant="ghost"
+                          aria-label="Toggle theme"
+                          size="md"
+                          color={useColorModeValue('gray.600', 'yellow.400')}
+                          _hover={{ bg: hoverBg }}
+                        />
+                      </Tooltip>
+            <IconButton
+              aria-label="Open Menu"
+              icon={isOpen ? <X size={20} /> : <MenuIcon size={20} />}
+              onClick={isOpen ? onClose : onOpen}
+              variant="ghost"
+              _hover={{ bg: hoverBg }}
+            />
+          </Box>
         </Flex>
       </Container>
 
-      {/* Mobile Navigation Drawer with Enhanced Animation */}
       <AnimatePresence>
         {isOpen && (
           <Drawer
             isOpen={isOpen}
             placement="right"
             onClose={onClose}
-            size="xs"
+            size="full"
           >
             <DrawerOverlay />
             <DrawerContent
@@ -283,8 +284,7 @@ const Navbar = () => {
               exit="exit"
               bg={bg}
             >
-              <DrawerCloseButton />
-              <DrawerHeader borderBottomWidth="1px">
+              <DrawerHeader borderBottomWidth="1px" display="flex" justifyContent="space-between" alignItems="center">
                 <MotionFlex
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -295,6 +295,7 @@ const Navbar = () => {
                   <Image src={logo} alt="Logo" boxSize="25px" />
                   <Text>Navigation</Text>
                 </MotionFlex>
+                <DrawerCloseButton position="static" />
               </DrawerHeader>
               <DrawerBody py={4}>
                 <VStack
@@ -325,7 +326,6 @@ const Navbar = () => {
                         onClick={() => scrollToSection(item.id)}
                         position="relative"
                         zIndex={2}
-                        bg="transparent"
                       >
                         {item.name}
                       </Button>
@@ -346,6 +346,8 @@ const Navbar = () => {
                       )}
                     </MotionBox>
                   ))}
+                  
+                 
                 </VStack>
               </DrawerBody>
             </DrawerContent>
