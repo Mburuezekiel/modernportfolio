@@ -37,6 +37,7 @@ const projects = [
     technologies: ['React', 'Express', 'MongoDB', 'Shadcn' ],
     githubUrl: 'https://github.com/Mburuezekiel/pamoja-e-commerce-hub.git',
     liveUrl: 'https://pamojaelectronics.vercel.app/',
+    
   },
   {
     title: 'Task Management App',
