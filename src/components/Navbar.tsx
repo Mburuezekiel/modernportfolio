@@ -293,7 +293,7 @@ const Navbar = () => {
                   gap={2}
                 >
                   <Image src={logo} alt="Logo" boxSize="25px" />
-                  <Text>Navigation</Text>
+                  <Text>Menu</Text>
                 </MotionFlex>
                 <DrawerCloseButton position="static" />
               </DrawerHeader>

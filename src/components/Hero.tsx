@@ -73,7 +73,7 @@ export default function Hero() {
     setCurrentImageIndex(newIndex);
     setIsAutoPlaying(false);
     
-    // Resume autoplay after inactivity
+    // Resume autoplay after inactivity (e.g., 10 seconds after a manual click)
     const timeout = setTimeout(() => setIsAutoPlaying(true), 10000);
     return () => clearTimeout(timeout);
   }, []);
@@ -87,7 +87,7 @@ export default function Hero() {
   }, [currentImageIndex, handleManualChange, carouselContent.length]);
 
   // Responsive settings
-  const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMobile = useBreakpointValue({ base: true, md: false }); // Already present, good for conditional rendering if needed
   
   // Color mode values
   const bgGradient = useColorModeValue(
@@ -136,9 +136,16 @@ export default function Hero() {
   };
 
   const imageVariants = {
-    enter: { opacity: 0, x: 20 },
+    // These use 'x' for horizontal sliding
+    enter: (direction) => ({ // direction passed from AnimatePresence custom prop
+      opacity: 0,
+      x: direction > 0 ? 200 : -200, // Enter from right if next, left if prev
+    }),
     center: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -20 }
+    exit: (direction) => ({ // direction passed from AnimatePresence custom prop
+      opacity: 0,
+      x: direction < 0 ? 200 : -200, // Exit to right if prev, left if next
+    }),
   };
 
   return (
@@ -161,19 +168,20 @@ export default function Hero() {
         zIndex="0"
       />
 
-      <Container maxW="7xl" position="relative" zIndex="1">
+      <Container maxW="7xl" position="relative" zIndex="1" px={{ base: 4, sm: 6, md: 8 }}> {/* Adjusted px */}
         <Stack
           align="center"
           spacing={{ base: 10, md: 16 }}
           py={{ base: 20, md: 28 }}
           direction={{ base: "column", md: "row" }}
         >
-          {/* Left side content */}
+          {/* Left side content (Text and Buttons) */}
           <VStack 
             flex={1} 
             spacing={{ base: 6, md: 8 }}
             align={{ base: "center", md: "flex-start" }}
             textAlign={{ base: "center", md: "left" }}
+            maxW={{ base: "full", md: "50%" }} // Limit width on larger screens for better text flow
           >
             <MotionBox
               variants={headerVariants}
@@ -238,7 +246,7 @@ export default function Hero() {
                 spacing={{ base: 3, sm: 5 }} 
                 mt={4}
                 width="full"
-                flexWrap={{ base: "wrap", sm: "nowrap" }}
+                flexWrap={{ base: "wrap", sm: "nowrap" }} // Allow wrapping on very small screens
                 justifyContent={{ base: "center", md: "flex-start" }}
               >
                 <Button
@@ -247,8 +255,7 @@ export default function Hero() {
                   fontWeight="semibold"
                   px={6}
                   py={6}
-                
-               colorScheme="orange" 
+                  colorScheme="orange" 
                   bg="orange.400"
                   _hover={{ bg: buttonHoverBg }}
                   leftIcon={<Mail size={20} />}
@@ -296,27 +303,33 @@ export default function Hero() {
             align="center" 
             position="relative" 
             w="full"
-            h={{ base: "350px", md: "450px" }}
+            minH={{ base: "300px", md: "450px" }} // minH for better control
+            maxW={{ base: "full", md: "50%" }} // Match left column's maxW
+            mt={{ base: 10, md: 0 }} // Add top margin on mobile, none on desktop
           >
             <MotionBox
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
               position="relative"
-              height="full"
+              height="full" // Take full height of parent Flex
+              width="full"  // Take full width of parent Flex
+              maxW="500px" // Max width for the carousel itself to prevent it from getting too large
+              aspectRatio={16/9} // Maintain aspect ratio for the carousel image container
               rounded="2xl"
               boxShadow="2xl"
-              width="full"
               overflow="hidden"
               borderWidth="1px"
               borderColor={useColorModeValue("gray.200", "gray.700")}
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" custom={1}> {/* custom prop for directional animation */}
                 <MotionBox
                   key={currentImageIndex}
-                  initial={imageVariants.enter}
-                  animate={imageVariants.center}
-                  exit={imageVariants.exit}
+                  variants={imageVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  custom={1} // Pass direction for 'enter' and 'exit' variants
                   transition={{ duration: 0.5 }}
                   position="absolute"
                   width="full"
@@ -357,7 +370,7 @@ export default function Hero() {
                 aria-label="Previous image"
                 icon={<ChevronLeft />}
                 position="absolute"
-                left="10px"
+                left={{ base: "5px", md: "10px" }} // Adjusted for smaller screens
                 top="50%"
                 transform="translateY(-50%)"
                 onClick={() => scrollImages("left")}
@@ -365,13 +378,14 @@ export default function Hero() {
                 colorScheme="orange"
                 bg="blackAlpha.600"
                 _hover={{ bg: "blackAlpha.800" }}
-                size="md"
+                size={{ base: "sm", md: "md" }} // Adjusted for smaller screens
+                zIndex={2} // Ensure arrows are above image
               />
               <IconButton
                 aria-label="Next image"
                 icon={<ChevronRight />}
                 position="absolute"
-                right="10px"
+                right={{ base: "5px", md: "10px" }} // Adjusted for smaller screens
                 top="50%"
                 transform="translateY(-50%)"
                 onClick={() => scrollImages("right")}
@@ -379,14 +393,15 @@ export default function Hero() {
                 colorScheme="orange"
                 bg="blackAlpha.600"
                 _hover={{ bg: "blackAlpha.800" }}
-                size="md"
+                size={{ base: "sm", md: "md" }} // Adjusted for smaller screens
+                zIndex={2} // Ensure arrows are above image
               />
             </MotionBox>
 
             {/* Dots indicator */}
             <HStack 
               position="absolute" 
-              bottom="-30px" 
+              bottom={{ base: "-40px", md: "-30px" }} // Adjust position to prevent overlap/ensure visibility
               justify="center" 
               width="full"
               spacing={2}
