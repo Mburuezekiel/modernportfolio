@@ -1,6 +1,9 @@
 import React from 'react';
 import CALC from '../assets/Calc.jpg';
 import taskmate from '../assets/taskui.webp';
+import paystack from '../assets/Paystack.png';
+import crowdfunding from '../assets/crowdfunding.jpeg';
+import pamoja from '../assets/Pamoja.png';
 import {
   Box,
   Container,
@@ -13,18 +16,27 @@ import {
   Link,
   Button,
   useColorModeValue,
+  Tooltip, // Import Tooltip for the hover effect
 } from '@chakra-ui/react';
 import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Inua Fund – Micro-Funding Platform',
-    description: 'Inua Fund is a community-driven micro-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
-    image: 'https://www.inuafund.co.ke/icon-192x192.png',
+    title: 'Inua Fund – CrowdFunding Platform',
+    description: 'Inua Fund is a community-driven crowd-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
+    image: crowdfunding,
     technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
-    // githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git',
-    //  githubUrl: '',
+    githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git', // Keep the URL here
     liveUrl: 'https://inua-fund.vercel.app/',
+    isPrivate: true, // Add a new property to mark it as private
+  },
+   {
+    title: 'Pamoja Electronics – E-commerce Platform',
+    description: 'Pamoja Electronics is a cutting-edge e-commerce platform that specializes in electronics and gadgets. It offers a seamless shopping experience with a wide range of products, secure payment options, and fast delivery services.',
+    image: pamoja,
+    technologies: ['React', 'Express', 'MongoDB', 'Shadcn' ],
+    githubUrl: 'https://github.com/yourusername/project2',
+    liveUrl: 'https://pamojaelectronics.vercel.app/',
   },
   {
     title: 'Task Management App',
@@ -45,7 +57,7 @@ const projects = [
   {
     title: 'Paystack Payment Intergration',
     description: 'This project seamlessly integrates Paystacks payment gateway, providing a robust and secure solution for processing online transactions. Built with React for a dynamic user experience, and supported by MongoDB for data management, it offers a streamlined payment flow. Shadcn UI components ensure a modern and polished interface.',
-    image: 'https://www.inuafund.co.ke/Paystack.png',
+    image: paystack,
     technologies: ['React',  'MongoDB', 'Shadcn'],
     githubUrl: 'https://github.com/Mburuezekiel/Paystack-Payment-Intergration.git',
     // liveUrl: 'https://project1.com',
@@ -63,7 +75,7 @@ const projects = [
   
 ];
 
-const ProjectCard = ({ title, description, image, technologies, githubUrl, liveUrl }) => {
+const ProjectCard = ({ title, description, image, technologies, githubUrl, liveUrl, isPrivate }) => {
   return (
     <Box
       maxW={'445px'}
@@ -124,16 +136,34 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
         </Stack>
       </Stack>
       <Stack mt={8} direction={'row'} spacing={4}>
-        {/* <Button
-          flex={1}
-          fontSize={'sm'}
-          bg={'gray.700'}
-          rounded={'full'}
-          leftIcon={<Github size={20} />}
-          onClick={() => window.open(githubUrl, '_blank')}
-        >
-          Code
-        </Button> */}
+        {isPrivate ? (
+          <Tooltip label="Not an open source project" aria-label="Not open source tooltip">
+            <Button
+              flex={1}
+              fontSize={'sm'}
+              bg={'gray.600'} // Gray out the button
+              rounded={'full'}
+              leftIcon={<Github size={20} />}
+              cursor="not-allowed" // Change cursor to indicate it's not clickable
+              isDisabled // Disable the button
+            >
+              Code
+            </Button>
+          </Tooltip>
+        ) : (
+          githubUrl && ( // Only show if githubUrl exists
+            <Button
+              flex={1}
+              fontSize={'sm'}
+              bg={'gray.700'}
+              rounded={'full'}
+              leftIcon={<Github size={20} />}
+              onClick={() => window.open(githubUrl, '_blank')}
+            >
+              Code
+            </Button>
+          )
+        )}
         <Button
           flex={1}
           fontSize={'sm'}
