@@ -69,7 +69,7 @@ const sampleBlogPosts: BlogPost[] = [
 }</code></pre>
 
       <h3>4. UI Libraries and Frameworks</h3>
-      <p>Libraries like Chakra UI (which you're already using!), Material-UI, or Ant Design provide responsive components out-of-the-box, significantly speeding up development time. They handle many of the responsive considerations for you.</p>
+      <p>Libraries like Chakra UI , Material-UI, or Ant Design provide responsive components out-of-the-box, significantly speeding up development time. They handle many of the responsive considerations for you.</p>
 
       <h2>Accessibility Considerations</h2>
       <p>Responsiveness goes hand-in-hand with accessibility. Ensure your responsive design doesn't compromise keyboard navigation, screen reader compatibility, or color contrast. Use semantic HTML elements and ARIA attributes where appropriate.</p>
