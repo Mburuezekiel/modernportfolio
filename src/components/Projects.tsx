@@ -4,6 +4,7 @@ import taskmate from '../assets/taskui.webp';
 import paystack from '../assets/Paystack.png';
 import crowdfunding from '../assets/crowdfunding.jpeg';
 import pamoja from '../assets/Pamoja.png';
+import Krystall from '../assets/Krystaltoys.png';
 import {
   Box,
   Container,
@@ -39,6 +40,16 @@ const projects = [
     liveUrl: 'https://pamojaelectronics.vercel.app/',
     
   },
+  {
+    title: 'Krystal Toy Store – E-commerce Platform',
+    description: '  Krystal Toy Store is a vibrant e-commerce platform dedicated to providing a wide range of toys and games for children of all ages. With a user-friendly interface, secure payment options, and fast shipping, it aims to create a delightful shopping experience for parents and kids alike.',
+    image: pamoja,
+    technologies: ['React', 'Express', 'MongoDB', 'Shadcn', 'Node.js' ],
+    githubUrl: 'https://github.com/Mburuezekiel/Krystal-Toy-Store.git',
+    liveUrl: 'https://krystaltoystore.vercel.app',
+    
+  },
+
   {
     title: 'Task Management App',
     description: 'A collaborative task management application with real-time updates and team features.',
