@@ -43,7 +43,7 @@ const projects = [
   {
     title: 'Krystal Toy Store – E-commerce Platform',
     description: '  Krystal Toy Store is a vibrant e-commerce platform dedicated to providing a wide range of toys and games for children of all ages. With a user-friendly interface, secure payment options, and fast shipping, it aims to create a delightful shopping experience for parents and kids alike.',
-    image: pamoja,
+    image: Krystall,
     technologies: ['React', 'Express', 'MongoDB', 'Shadcn', 'Node.js' ],
     githubUrl: 'https://github.com/Mburuezekiel/Krystal-Toy-Store.git',
     liveUrl: 'https://krystaltoystore.vercel.app',
