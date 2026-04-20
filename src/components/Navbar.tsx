@@ -13,7 +13,7 @@ const navItems = [
   { name: 'Contact', icon: Mail, id: 'contact' },
 ];
  
-export function Navbar() {
+export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);

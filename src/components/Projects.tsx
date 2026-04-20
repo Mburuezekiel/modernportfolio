@@ -1,4 +1,3 @@
-import React from 'react';
 import CALC from '../assets/Calc.jpg';
 import taskmate from '../assets/taskui.webp';
 import paystack from '../assets/Paystack.png';
@@ -22,6 +21,16 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import { ExternalLink, Github } from 'lucide-react';
+
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  isPrivate?: boolean;
+}
 
 const projects = [
   {
@@ -106,7 +115,7 @@ const projects = [
   
 ];
 
-const ProjectCard = ({ title, description, image, technologies, githubUrl, liveUrl, isPrivate }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, image, technologies, githubUrl, liveUrl, isPrivate }) => {
   return (
     <Box
       maxW={'445px'}
@@ -117,7 +126,30 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
       p={6}
       overflow={'hidden'}
     >
-      <Link href={liveUrl} isExternal>
+      {liveUrl ? (
+        <Link href={liveUrl} isExternal>
+          <Box
+            h={'210px'}
+            bg={'gray.100'}
+            mt={-6}
+            mx={-6}
+            mb={6}
+            pos={'relative'}
+            _hover={{
+              transform: 'scale(1.05)',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+          >
+            <Image
+              src={image}
+              alt={title}
+              objectFit="cover"
+              w="full"
+              h="full"
+            />
+          </Box>
+        </Link>
+      ) : (
         <Box
           h={'210px'}
           bg={'gray.100'}
@@ -125,10 +157,6 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
           mx={-6}
           mb={6}
           pos={'relative'}
-          _hover={{
-            transform: 'scale(1.05)',
-            transition: 'transform 0.3s ease-in-out',
-          }}
         >
           <Image
             src={image}
@@ -138,7 +166,7 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
             h="full"
           />
         </Box>
-      </Link>
+      )}
       <Stack>
         <Heading
           color={useColorModeValue('gray.700', 'white')}
@@ -195,20 +223,22 @@ const ProjectCard = ({ title, description, image, technologies, githubUrl, liveU
             </Button>
           )
         )}
-        <Button
-          flex={1}
-          fontSize={'sm'}
-          rounded={'full'}
-          bg={'brand.500'}
-          color={'white'}
-          leftIcon={<ExternalLink size={20} />}
-          _hover={{
-            bg: 'brand.600',
-          }}
-          onClick={() => window.open(liveUrl, '_blank')}
-        >
-          Live Demo
-        </Button>
+        {liveUrl && (
+          <Button
+            flex={1}
+            fontSize={'sm'}
+            rounded={'full'}
+            bg={'brand.500'}
+            color={'white'}
+            leftIcon={<ExternalLink size={20} />}
+            _hover={{
+              bg: 'brand.600',
+            }}
+            onClick={() => window.open(liveUrl, '_blank')}
+          >
+            Live Demo
+          </Button>
+        )}
       </Stack>
     </Box>
   );
