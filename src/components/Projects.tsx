@@ -39,7 +39,7 @@ const projects = [
     image: crowdfunding,
     technologies: ['React', 'FastAPI', 'MongoDB', 'Node'],
     githubUrl: 'https://github.com/Mburuezekiel/Inua-Fund-.git',
-    liveUrl: 'https://inua-fund.vercel.app/',
+    liveUrl: 'https://inuafund.co.ke',
     isPrivate: true,
   },
    {
