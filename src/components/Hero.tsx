@@ -240,7 +240,7 @@ export default function Hero() {
 
           {/* Stats row */}
           <motion.div variants={fadeUp} style={{ display: "flex", gap: "32px" }}>
-            {[["3+", "Years Exp."], ["20+", "Projects"], ["∞", "Curiosity"]].map(([num, label]) => (
+            {[["2+", "Years Exp."], ["20+", "Projects"], ["∞", "Curiosity"]].map(([num, label]) => (
               <div key={label}>
                 <div style={{
                   fontFamily: "'Cormorant Garamond', serif",
