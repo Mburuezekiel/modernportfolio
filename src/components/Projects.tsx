@@ -6,6 +6,7 @@ import crowdfunding from '../assets/crowdfunding.jpeg';
 import pamoja from '../assets/Pamoja.png';
 import Krystall from '../assets/Krystaltoys.png';
 import KrystalMall from '../assets/KrystalMall.png';
+import Mutapp from '../assets/Mutapp.png';
 import {
   Box,
   Container,
@@ -49,6 +50,15 @@ const projects = [
     githubUrl: 'https://github.com/Mburuezekiel/pamoja-e-commerce-hub.git',
     liveUrl: 'https://pamojaelectronics.vercel.app/',
     
+  },
+  {
+    title: 'University Mapping App',
+    description: 'A mobile application for mapping and navigating university campuses.',
+    image: Mutapp,
+    technologies: ['React', 'Express', 'MongoDB', 'Shadcn'],
+    githubUrl: 'https://github.com/Mburuezekiel/Mutapp.git',
+    liveUrl: 'https://mut-lecture-rooms.vercel.app',
+    isPrivate: true,
   },
   {
     title: 'Krystal Toy Store – E-commerce Platform',
