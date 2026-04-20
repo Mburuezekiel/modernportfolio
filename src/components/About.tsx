@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Code, Coffee, Globe, Github, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import OfficialPic from '../assets/OfficialPic.jpeg';
 
 // Free Unsplash portrait placeholder (replace with ME import when using locally)
-const ME = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80";
+const ME = OfficialPic;
 
 // ── Scroll reveal hook ────────────────────────────────────────────────────────
 function useReveal(threshold = 0.15) {

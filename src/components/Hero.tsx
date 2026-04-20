@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Github, Mail, Download, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import branding from '../assets/branding.jpeg';
+
+// Free Unsplash portrait placeholder (replace with ME import when using locally)
+
+
 
 // ── Free Unsplash images (no attribution required for demo) ──────────────────
 const carouselContent = [
@@ -23,7 +28,7 @@ const carouselContent = [
     tag: "Development",
   },
   {
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&auto=format&fit=crop&q=80",
+    image: branding,
     title: "Brand Identity",
     desc: "Crafting unique visual identities that represent your brand",
     tag: "Branding",
