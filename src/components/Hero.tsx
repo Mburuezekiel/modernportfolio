@@ -7,7 +7,7 @@ import log from "../assets/logo2.jpeg";
 import back from "../assets/background.webp";
 import code from "../assets/code.avif";
 import off from "../assets/code off.avif";
-import resume from "../assets/resume.pdf";
+import resume from "../assets/Ezekiel Mburu Cv .pdf";
 
 // Import Chakra UI components
 import {

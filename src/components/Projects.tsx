@@ -5,6 +5,7 @@ import paystack from '../assets/Paystack.png';
 import crowdfunding from '../assets/crowdfunding.jpeg';
 import pamoja from '../assets/Pamoja.png';
 import Krystall from '../assets/Krystaltoys.png';
+import KrystalMall from '../assets/KrystalMall.png';
 import {
   Box,
   Container,
@@ -22,6 +23,15 @@ import {
 import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
+  {
+    title: 'Krystal Mall – E-commerce Platform',
+    description: 'Krystal Mall is a modern e-commerce platform that offers a wide range of products and services. With a user-friendly interface and secure payment options, it provides a seamless shopping experience for customers.',
+    image: KrystalMall,
+    technologies: ['React', 'Express', 'MongoDB', 'Shadcn'],
+    githubUrl: 'https://github.com/Mburuezekiel/Krystal-Mall.git',
+    liveUrl: 'https://krystalmall.co.ke',
+    isPrivate: true,
+  },
   {
     title: 'Inua Fund – CrowdFunding Platform',
     description: 'Inua Fund is a community-driven crowd-funding platform that empowers individuals in need by connecting them with donors willing to support their causes. Whether it’s a small business startup, medical emergency, or education fees, Inua Fund provides a transparent and efficient way to raise funds.',
